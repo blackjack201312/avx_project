@@ -1,0 +1,8 @@
+# There are three datasets:
+DEV_ID="${DEV_ID:-0}"
+ITER="${ITER:-100}"
+# ./euler3d ../../data/cfd/fvcorr.domn.097K   
+./euler3d ../../data/cfd/fvcorr.domn.193K ${DEV_ID} ${ITER}  
+# ./euler3d ../../data/cfd/missile.domn.0.2M  
+
+# replace euler3d with other CFD programs

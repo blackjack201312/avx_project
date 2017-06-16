@@ -1,0 +1,14 @@
+make clean
+make
+
+export OMP_NUM_THREADS=224
+export ITER=50000
+./srad 2048 2048 0 127 0 127 224 0.5 1000
+
+export OMP_NUM_THREADS=112
+export ITER=55000
+./srad 2048 2048 0 127 0 127 224 0.5 1000
+
+export OMP_NUM_THREADS=56
+export ITER=45000
+./srad 2048 2048 0 127 0 127 224 0.5 1000

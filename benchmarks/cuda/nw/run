@@ -1,0 +1,3 @@
+DEV_ID="${DEV_ID:-0}"
+ITER="${ITER:-100}"
+./needle 2048 10 ${DEV_ID} ${ITER}

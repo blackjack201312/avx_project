@@ -1,0 +1,5 @@
+if [ ! -f ./kmeans_serial/kmeans ];
+then
+	make
+fi
+./kmeans_serial/kmeans -i ../../data/kmeans/kdd_cup 

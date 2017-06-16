@@ -1,0 +1,5 @@
+if [ ! -f ./kmeans_openmp/kmeans ];
+then
+	make
+fi
+./kmeans_openmp/kmeans -n 4 -i ../../data/kmeans/kdd_cup 

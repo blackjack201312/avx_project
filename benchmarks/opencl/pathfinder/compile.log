@@ -1,0 +1,31 @@
+g++ -I/opt/AMDAPPSDK-3.0/include/  -c -g main.cpp OpenCL.cpp
+OpenCL.cpp: In member function ‘void OpenCL::buildKernel()’:
+OpenCL.cpp:146:60: warning: passing NULL to non-pointer argument 2 of ‘cl_int clBuildProgram(cl_program, cl_uint, _cl_device_id* const*, const char*, void (*)(cl_program, void*), void*)’ [-Wconversion-null]
+  ret = clBuildProgram(program, NULL, NULL, NULL, NULL, NULL);
+                                                            ^
+OpenCL.cpp: In member function ‘void OpenCL::getDevices(cl_device_type)’:
+OpenCL.cpp:277:18: warning: ‘_cl_command_queue* clCreateCommandQueue(cl_context, cl_device_id, cl_command_queue_properties, cl_int*)’ is deprecated [-Wdeprecated-declarations]
+  command_queue = clCreateCommandQueue(context, device_id[0], 0, &ret);
+                  ^
+In file included from OpenCL.h:14:0,
+                 from OpenCL.cpp:2:
+/opt/AMDAPPSDK-3.0/include/CL/cl.h:1359:1: note: declared here
+ clCreateCommandQueue(cl_context                     /* context */,
+ ^
+OpenCL.cpp:277:18: warning: ‘_cl_command_queue* clCreateCommandQueue(cl_context, cl_device_id, cl_command_queue_properties, cl_int*)’ is deprecated [-Wdeprecated-declarations]
+  command_queue = clCreateCommandQueue(context, device_id[0], 0, &ret);
+                  ^
+In file included from OpenCL.h:14:0,
+                 from OpenCL.cpp:2:
+/opt/AMDAPPSDK-3.0/include/CL/cl.h:1359:1: note: declared here
+ clCreateCommandQueue(cl_context                     /* context */,
+ ^
+OpenCL.cpp:277:69: warning: ‘_cl_command_queue* clCreateCommandQueue(cl_context, cl_device_id, cl_command_queue_properties, cl_int*)’ is deprecated [-Wdeprecated-declarations]
+  command_queue = clCreateCommandQueue(context, device_id[0], 0, &ret);
+                                                                     ^
+In file included from OpenCL.h:14:0,
+                 from OpenCL.cpp:2:
+/opt/AMDAPPSDK-3.0/include/CL/cl.h:1359:1: note: declared here
+ clCreateCommandQueue(cl_context                     /* context */,
+ ^
+g++ main.o OpenCL.o -L/opt/AMDAPPSDK-3.0/lib/x86_64/ -lOpenCL -o pathfinder

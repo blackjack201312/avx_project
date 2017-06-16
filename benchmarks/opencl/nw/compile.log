@@ -1,0 +1,39 @@
+g++  -g -O3 -Wall -o nw nw.c -I/opt/AMDAPPSDK-3.0/include/  -L/opt/AMDAPPSDK-3.0/lib/x86_64/ -lOpenCL -lOpenCL
+nw.c: In function ‘int initialize(int)’:
+nw.c:88:14: warning: ‘_cl_command_queue* clCreateCommandQueue(cl_context, cl_device_id, cl_command_queue_properties, cl_int*)’ is deprecated [-Wdeprecated-declarations]
+  cmd_queue = clCreateCommandQueue( context, device_list[0], 0, NULL );
+              ^
+In file included from nw.c:24:0:
+/opt/AMDAPPSDK-3.0/include/CL/cl.h:1359:1: note: declared here
+ clCreateCommandQueue(cl_context                     /* context */,
+ ^
+nw.c:88:14: warning: ‘_cl_command_queue* clCreateCommandQueue(cl_context, cl_device_id, cl_command_queue_properties, cl_int*)’ is deprecated [-Wdeprecated-declarations]
+  cmd_queue = clCreateCommandQueue( context, device_list[0], 0, NULL );
+              ^
+In file included from nw.c:24:0:
+/opt/AMDAPPSDK-3.0/include/CL/cl.h:1359:1: note: declared here
+ clCreateCommandQueue(cl_context                     /* context */,
+ ^
+nw.c:88:69: warning: ‘_cl_command_queue* clCreateCommandQueue(cl_context, cl_device_id, cl_command_queue_properties, cl_int*)’ is deprecated [-Wdeprecated-declarations]
+  cmd_queue = clCreateCommandQueue( context, device_list[0], 0, NULL );
+                                                                     ^
+In file included from nw.c:24:0:
+/opt/AMDAPPSDK-3.0/include/CL/cl.h:1359:1: note: declared here
+ clCreateCommandQueue(cl_context                     /* context */,
+ ^
+nw.c: In function ‘int main(int, char**)’:
+nw.c:209:23: warning: deprecated conversion from string constant to ‘char*’ [-Wwrite-strings]
+  char * kernel_nw1  = "nw_kernel1";
+                       ^
+nw.c:210:23: warning: deprecated conversion from string constant to ‘char*’ [-Wwrite-strings]
+  char * kernel_nw2  = "nw_kernel2";
+                       ^
+nw.c:224:67: warning: narrowing conversion of ‘(workgroupsize <unknown operator> 1)’ from ‘int’ to ‘size_t {aka long unsigned int}’ inside { } is ill-formed in C++11 [-Wnarrowing]
+  size_t local_work[3] = { (workgroupsize>0)?workgroupsize:1, 1, 1 };
+                                                                   ^
+nw.c:225:45: warning: narrowing conversion of ‘nworkitems’ from ‘int’ to ‘size_t {aka long unsigned int}’ inside { } is ill-formed in C++11 [-Wnarrowing]
+  size_t global_work[3] = { nworkitems, 1, 1 }; //nworkitems = no. of GPU threads
+                                             ^
+nw.c:213:51: warning: ignoring return value of ‘size_t fread(void*, size_t, size_t, FILE*)’, declared with attribute warn_unused_result [-Wunused-result]
+  fread(source + strlen(source), sourcesize, 1, fp);
+                                                   ^

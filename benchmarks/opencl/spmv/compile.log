@@ -1,0 +1,30 @@
+gcc -g -O2 -I../../../tools/convert-dataset -L../../../tools/convert-dataset ocl.c -c -I/opt/AMDAPPSDK-3.0/include/  -L/opt/AMDAPPSDK-3.0/lib/x86_64/ -lOpenCL -lOpenCL
+gcc -g -O2 -I../../../tools/convert-dataset -L../../../tools/convert-dataset file.c -c # -I/opt/AMDAPPSDK-3.0/include/  -L/opt/AMDAPPSDK-3.0/lib/x86_64/ -lOpenCL -lOpenCL
+file.c: In function ‘inputData’:
+file.c:31:3: warning: ignoring return value of ‘fscanf’, declared with attribute warn_unused_result [-Wunused-result]
+   fscanf(fid, "%d %d %d %d %d\n",len,depth,nzcnt_len,dim,pad);
+   ^
+file.c:39:3: warning: ignoring return value of ‘fread’, declared with attribute warn_unused_result [-Wunused-result]
+   fread (*h_data, sizeof (float), _len, fid);
+   ^
+file.c:42:3: warning: ignoring return value of ‘fread’, declared with attribute warn_unused_result [-Wunused-result]
+   fread (*h_indices, sizeof (int), _len, fid);
+   ^
+file.c:45:3: warning: ignoring return value of ‘fread’, declared with attribute warn_unused_result [-Wunused-result]
+   fread (*h_ptr, sizeof (int), _depth, fid);
+   ^
+file.c:48:3: warning: ignoring return value of ‘fread’, declared with attribute warn_unused_result [-Wunused-result]
+   fread (*h_perm, sizeof (int), _dim, fid);
+   ^
+file.c:51:3: warning: ignoring return value of ‘fread’, declared with attribute warn_unused_result [-Wunused-result]
+   fread (*h_nzcnt, sizeof (int), _nzcnt_len, fid);
+   ^
+file.c: In function ‘input_vec’:
+file.c:59:3: warning: ignoring return value of ‘fread’, declared with attribute warn_unused_result [-Wunused-result]
+   fread (h_vec, sizeof (float), dim, fid);
+   ^
+gcc -g -O2 -I../../../tools/convert-dataset -L../../../tools/convert-dataset gpu_info.c -c # -I/opt/AMDAPPSDK-3.0/include/  -L/opt/AMDAPPSDK-3.0/lib/x86_64/ -lOpenCL -lOpenCL
+gcc -g -O2 -I../../../tools/convert-dataset -L../../../tools/convert-dataset main.c ocl.o file.o gpu_info.o convert_dataset.o -o bfs -I/opt/AMDAPPSDK-3.0/include/  -L/opt/AMDAPPSDK-3.0/lib/x86_64/ -lOpenCL -lOpenCL -lm
+gcc: error: convert_dataset.o: No such file or directory
+Makefile:9: recipe for target 'spmv' failed
+make: *** [spmv] Error 1

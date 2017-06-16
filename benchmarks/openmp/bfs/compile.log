@@ -1,0 +1,2 @@
+icpc -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -liomp5 -lrt -lpthread -qopenmp -I../../common/include -c main.cc
+icpc -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -liomp5 -lrt -lpthread -qopenmp -I../../common/include main.o ../../common/src/parboil.c -o bfs

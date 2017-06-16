@@ -1,0 +1,4 @@
+# cuda/lud_cuda -i ../../data/lud/256.dat 
+# If iter > 1, verification will fail
+DEV_ID="${DEV_ID:-0}"
+cuda/lud_cuda -s 8000 -d ${DEV_ID}

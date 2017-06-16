@@ -1,0 +1,5 @@
+if [ ! -f ./euler3d_cpu ];
+then
+	make
+fi
+./euler3d_cpu ../../data/cfd/fvcorr.domn.193K

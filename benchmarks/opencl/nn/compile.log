@@ -1,0 +1,100 @@
+g++ -g -O3 -lOpenCL  -fopenmp nearestNeighbor.cpp clutils.cpp utils.cpp -o nn -I/opt/AMDAPPSDK-3.0/include/  -L/opt/AMDAPPSDK-3.0/lib/x86_64/ -lOpenCL
+nearestNeighbor.cpp: In function ‘int loadData(char*, std::vector<record>&, std::vector<latLong>&)’:
+nearestNeighbor.cpp:262:42: warning: ignoring return value of ‘char* fgets(char*, int, FILE*)’, declared with attribute warn_unused_result [-Wunused-result]
+             fgets(record.recString,49,fp);
+                                          ^
+clutils.cpp: In function ‘_cl_context* cl_init(char)’:
+clutils.cpp:223:24: warning: ‘_cl_command_queue* clCreateCommandQueue(cl_context, cl_device_id, cl_command_queue_properties, cl_int*)’ is deprecated [-Wdeprecated-declarations]
+     commandQueueProf = clCreateCommandQueue(context, device, 
+                        ^
+In file included from clutils.cpp:57:0:
+/opt/AMDAPPSDK-3.0/include/CL/cl.h:1359:1: note: declared here
+ clCreateCommandQueue(cl_context                     /* context */,
+ ^
+clutils.cpp:223:24: warning: ‘_cl_command_queue* clCreateCommandQueue(cl_context, cl_device_id, cl_command_queue_properties, cl_int*)’ is deprecated [-Wdeprecated-declarations]
+     commandQueueProf = clCreateCommandQueue(context, device, 
+                        ^
+In file included from clutils.cpp:57:0:
+/opt/AMDAPPSDK-3.0/include/CL/cl.h:1359:1: note: declared here
+ clCreateCommandQueue(cl_context                     /* context */,
+ ^
+clutils.cpp:224:63: warning: ‘_cl_command_queue* clCreateCommandQueue(cl_context, cl_device_id, cl_command_queue_properties, cl_int*)’ is deprecated [-Wdeprecated-declarations]
+                             CL_QUEUE_PROFILING_ENABLE, &status);
+                                                               ^
+In file included from clutils.cpp:57:0:
+/opt/AMDAPPSDK-3.0/include/CL/cl.h:1359:1: note: declared here
+ clCreateCommandQueue(cl_context                     /* context */,
+ ^
+clutils.cpp:227:26: warning: ‘_cl_command_queue* clCreateCommandQueue(cl_context, cl_device_id, cl_command_queue_properties, cl_int*)’ is deprecated [-Wdeprecated-declarations]
+     commandQueueNoProf = clCreateCommandQueue(context, device, 0, &status);
+                          ^
+In file included from clutils.cpp:57:0:
+/opt/AMDAPPSDK-3.0/include/CL/cl.h:1359:1: note: declared here
+ clCreateCommandQueue(cl_context                     /* context */,
+ ^
+clutils.cpp:227:26: warning: ‘_cl_command_queue* clCreateCommandQueue(cl_context, cl_device_id, cl_command_queue_properties, cl_int*)’ is deprecated [-Wdeprecated-declarations]
+     commandQueueNoProf = clCreateCommandQueue(context, device, 0, &status);
+                          ^
+In file included from clutils.cpp:57:0:
+/opt/AMDAPPSDK-3.0/include/CL/cl.h:1359:1: note: declared here
+ clCreateCommandQueue(cl_context                     /* context */,
+ ^
+clutils.cpp:227:74: warning: ‘_cl_command_queue* clCreateCommandQueue(cl_context, cl_device_id, cl_command_queue_properties, cl_int*)’ is deprecated [-Wdeprecated-declarations]
+     commandQueueNoProf = clCreateCommandQueue(context, device, 0, &status);
+                                                                          ^
+In file included from clutils.cpp:57:0:
+/opt/AMDAPPSDK-3.0/include/CL/cl.h:1359:1: note: declared here
+ clCreateCommandQueue(cl_context                     /* context */,
+ ^
+clutils.cpp: In function ‘_cl_context* cl_init_context(int, int, int)’:
+clutils.cpp:379:17: warning: ‘_cl_command_queue* clCreateCommandQueue(cl_context, cl_device_id, cl_command_queue_properties, cl_int*)’ is deprecated [-Wdeprecated-declarations]
+  commandQueue = clCreateCommandQueue(context,
+                 ^
+In file included from clutils.cpp:57:0:
+/opt/AMDAPPSDK-3.0/include/CL/cl.h:1359:1: note: declared here
+ clCreateCommandQueue(cl_context                     /* context */,
+ ^
+clutils.cpp:379:17: warning: ‘_cl_command_queue* clCreateCommandQueue(cl_context, cl_device_id, cl_command_queue_properties, cl_int*)’ is deprecated [-Wdeprecated-declarations]
+  commandQueue = clCreateCommandQueue(context,
+                 ^
+In file included from clutils.cpp:57:0:
+/opt/AMDAPPSDK-3.0/include/CL/cl.h:1359:1: note: declared here
+ clCreateCommandQueue(cl_context                     /* context */,
+ ^
+clutils.cpp:380:64: warning: ‘_cl_command_queue* clCreateCommandQueue(cl_context, cl_device_id, cl_command_queue_properties, cl_int*)’ is deprecated [-Wdeprecated-declarations]
+       devices[device_touse], CL_QUEUE_PROFILING_ENABLE, &status);
+                                                                ^
+In file included from clutils.cpp:57:0:
+/opt/AMDAPPSDK-3.0/include/CL/cl.h:1359:1: note: declared here
+ clCreateCommandQueue(cl_context                     /* context */,
+ ^
+clutils.cpp: In function ‘_cl_mem* cl_allocImage(size_t, size_t, char, cl_mem_flags)’:
+clutils.cpp:589:11: warning: ‘_cl_mem* clCreateImage2D(cl_context, cl_mem_flags, const cl_image_format*, size_t, size_t, size_t, void*, cl_int*)’ is deprecated [-Wdeprecated-declarations]
+     mem = clCreateImage2D(context, flags, &format, width, height, 0, NULL, &status);
+           ^
+In file included from clutils.cpp:57:0:
+/opt/AMDAPPSDK-3.0/include/CL/cl.h:1318:1: note: declared here
+ clCreateImage2D(cl_context              /* context */,
+ ^
+clutils.cpp:589:11: warning: ‘_cl_mem* clCreateImage2D(cl_context, cl_mem_flags, const cl_image_format*, size_t, size_t, size_t, void*, cl_int*)’ is deprecated [-Wdeprecated-declarations]
+     mem = clCreateImage2D(context, flags, &format, width, height, 0, NULL, &status);
+           ^
+In file included from clutils.cpp:57:0:
+/opt/AMDAPPSDK-3.0/include/CL/cl.h:1318:1: note: declared here
+ clCreateImage2D(cl_context              /* context */,
+ ^
+clutils.cpp:589:83: warning: ‘_cl_mem* clCreateImage2D(cl_context, cl_mem_flags, const cl_image_format*, size_t, size_t, size_t, void*, cl_int*)’ is deprecated [-Wdeprecated-declarations]
+     mem = clCreateImage2D(context, flags, &format, width, height, 0, NULL, &status);
+                                                                                   ^
+In file included from clutils.cpp:57:0:
+/opt/AMDAPPSDK-3.0/include/CL/cl.h:1318:1: note: declared here
+ clCreateImage2D(cl_context              /* context */,
+ ^
+clutils.cpp: In function ‘_cl_context* cl_init_context(int, int, int)’:
+clutils.cpp:322:63: warning: ignoring return value of ‘int scanf(const char*, ...)’, declared with attribute warn_unused_result [-Wunused-result]
+  if (printInfo) scanf("%d %d", &platform_touse, &device_touse);
+                                                               ^
+clutils.cpp: In function ‘_cl_program* cl_compileProgram(char*, char*, bool)’:
+clutils.cpp:818:31: warning: ignoring return value of ‘size_t fread(void*, size_t, size_t, FILE*)’, declared with attribute warn_unused_result [-Wunused-result]
+     fread(source, 1, size, fp);
+                               ^

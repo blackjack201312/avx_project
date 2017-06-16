@@ -1,0 +1,6 @@
+if [ ! -f ./pathfinder ];
+then
+	make
+fi
+
+./pathfinder 100000 100 

@@ -1,0 +1,4 @@
+./run_rodinia_benchmarks.sh: line 24: kill: (3190) - No such process
+./run_rodinia_benchmarks.sh: line 24: kill: (3191) - No such process
+./run_rodinia_benchmarks.sh: line 24: kill: (3193) - No such process
+./run_rodinia_benchmarks.sh: line 24: kill: (30325) - No such process

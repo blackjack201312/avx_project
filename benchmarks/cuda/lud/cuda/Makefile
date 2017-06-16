@@ -1,0 +1,45 @@
+include ../../../common/make.config
+CC = gcc
+NVCC = nvcc
+
+DEFS += \
+		-DGPU_TIMER \
+		$(SPACE)
+
+NVCCFLAGS += -I../common -I$(CUDA_SDK_PATH)/common/inc  -L$(CUDA_SDK_PATH)/lib $(CUTIL_LIB)\
+			 -O3 \
+			 -use_fast_math \
+			 # -arch=sm_13 \
+			 -lm \
+			 $(SPACE)
+
+CFLAGS += -I../common \
+					-I/usr/include/cuda \
+		  -O3 \
+		  -Wall \
+		  $(SPACE)
+
+# Add source files here
+EXECUTABLE  := lud_cuda
+# Cuda source files (compiled with cudacc)
+CUFILES     := lud_kernel.cu
+# C/C++ source files (compiled with gcc / c++)
+CCFILES     := lud.c lud_cuda.c ../common/common.c
+
+OBJS = ../common/common.o lud.o lud_kernel.o
+
+.PHONY: all clean 
+all : $(EXECUTABLE)
+
+.c.o : 
+	$(NVCC) $(KERNEL_DIM) $(NVCCFLAGS) $(DEFS) -o $@ -c $<
+
+%.o:	%.cu 
+	$(NVCC) $(KERNEL_DIM) $(NVCCFLAGS) $(DEFS) -o $@ -c $<
+
+
+$(EXECUTABLE) : $(OBJS)
+	$(NVCC) $(NVCCFLAGS) -o $@  $?
+
+clean:
+	rm -f $(EXECUTABLE) $(OBJS) *.linkinfo

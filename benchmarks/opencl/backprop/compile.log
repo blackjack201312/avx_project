@@ -1,0 +1,55 @@
+g++ -g -O2  backprop.c -c
+backprop.c: In function ‘BPNN* bpnn_read(char*)’:
+backprop.c:438:38: warning: ignoring return value of ‘ssize_t read(int, void*, size_t)’, declared with attribute warn_unused_result [-Wunused-result]
+   read(fd, (char *) &n1, sizeof(int));
+                                      ^
+backprop.c:439:38: warning: ignoring return value of ‘ssize_t read(int, void*, size_t)’, declared with attribute warn_unused_result [-Wunused-result]
+   read(fd, (char *) &n2, sizeof(int));
+                                      ^
+backprop.c:440:38: warning: ignoring return value of ‘ssize_t read(int, void*, size_t)’, declared with attribute warn_unused_result [-Wunused-result]
+   read(fd, (char *) &n3, sizeof(int));
+                                      ^
+backprop.c:448:49: warning: ignoring return value of ‘ssize_t read(int, void*, size_t)’, declared with attribute warn_unused_result [-Wunused-result]
+   read(fd, mem, (n1+1) * (n2+1) * sizeof(float));
+                                                 ^
+backprop.c:461:49: warning: ignoring return value of ‘ssize_t read(int, void*, size_t)’, declared with attribute warn_unused_result [-Wunused-result]
+   read(fd, mem, (n2+1) * (n3+1) * sizeof(float));
+                                                 ^
+g++ -g -O2  imagenet.c -c
+g++ -g -O2  facetrain.c -c
+g++ -g -O2  backprop_ocl.cpp backprop.o imagenet.o facetrain.o -o backprop -I/opt/AMDAPPSDK-3.0/include/  -L/opt/AMDAPPSDK-3.0/lib/x86_64/ -lOpenCL -lOpenCL
+backprop_ocl.cpp: In function ‘int initialize(int)’:
+backprop_ocl.cpp:51:14: warning: ‘_cl_command_queue* clCreateCommandQueue(cl_context, cl_device_id, cl_command_queue_properties, cl_int*)’ is deprecated [-Wdeprecated-declarations]
+  cmd_queue = clCreateCommandQueue( context, device_list[0], 0, NULL );
+              ^
+In file included from backprop_ocl.cpp:12:0:
+/opt/AMDAPPSDK-3.0/include/CL/cl.h:1359:1: note: declared here
+ clCreateCommandQueue(cl_context                     /* context */,
+ ^
+backprop_ocl.cpp:51:14: warning: ‘_cl_command_queue* clCreateCommandQueue(cl_context, cl_device_id, cl_command_queue_properties, cl_int*)’ is deprecated [-Wdeprecated-declarations]
+  cmd_queue = clCreateCommandQueue( context, device_list[0], 0, NULL );
+              ^
+In file included from backprop_ocl.cpp:12:0:
+/opt/AMDAPPSDK-3.0/include/CL/cl.h:1359:1: note: declared here
+ clCreateCommandQueue(cl_context                     /* context */,
+ ^
+backprop_ocl.cpp:51:69: warning: ‘_cl_command_queue* clCreateCommandQueue(cl_context, cl_device_id, cl_command_queue_properties, cl_int*)’ is deprecated [-Wdeprecated-declarations]
+  cmd_queue = clCreateCommandQueue( context, device_list[0], 0, NULL );
+                                                                     ^
+In file included from backprop_ocl.cpp:12:0:
+/opt/AMDAPPSDK-3.0/include/CL/cl.h:1359:1: note: declared here
+ clCreateCommandQueue(cl_context                     /* context */,
+ ^
+backprop_ocl.cpp: In function ‘int bpnn_train_kernel(BPNN*, float*, float*)’:
+backprop_ocl.cpp:107:23: warning: deprecated conversion from string constant to ‘char*’ [-Wwrite-strings]
+  char * kernel_bp1  = "bpnn_layerforward_ocl";
+                       ^
+backprop_ocl.cpp:108:23: warning: deprecated conversion from string constant to ‘char*’ [-Wwrite-strings]
+  char * kernel_bp2  = "bpnn_adjust_weights_ocl";
+                       ^
+backprop_ocl.cpp:109:20: warning: deprecated conversion from string constant to ‘char*’ [-Wwrite-strings]
+  char * tempchar = "./backprop_kernel.cl";
+                    ^
+backprop_ocl.cpp:112:51: warning: ignoring return value of ‘size_t fread(void*, size_t, size_t, FILE*)’, declared with attribute warn_unused_result [-Wunused-result]
+  fread(source + strlen(source), sourcesize, 1, fp);
+                                                   ^

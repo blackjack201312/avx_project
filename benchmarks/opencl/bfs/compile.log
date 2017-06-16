@@ -1,0 +1,46 @@
+g++ -g -O2  OpenCL_common.cpp -c -I/opt/AMDAPPSDK-3.0/include/  -L/opt/AMDAPPSDK-3.0/lib/x86_64/ -lOpenCL -lOpenCL
+OpenCL_common.cpp: In function ‘const char* oclDebugErrString(cl_int, cl_device_id)’:
+OpenCL_common.cpp:242:80: warning: format ‘%lu’ expects argument of type ‘long unsigned int’, but argument 3 has type ‘cl_uint {aka unsigned int}’ [-Wformat=]
+    fprintf(stderr, "  Device Maximum block allocation size: %lu\n", maxMemAlloc);
+                                                                                ^
+g++ -g -O2  main.cpp OpenCL_common.o -o bfs -I/opt/AMDAPPSDK-3.0/include/  -L/opt/AMDAPPSDK-3.0/lib/x86_64/ -lOpenCL -lOpenCL
+main.cpp: In function ‘int main(int, char**)’:
+main.cpp:164:37: warning: ‘_cl_command_queue* clCreateCommandQueue(cl_context, cl_device_id, cl_command_queue_properties, cl_int*)’ is deprecated [-Wdeprecated-declarations]
+   cl_command_queue clCommandQueue = clCreateCommandQueue(clContext,clDevice,CL_QUEUE_PROFILING_ENABLE,&clStatus);
+                                     ^
+In file included from main.cpp:30:0:
+/opt/AMDAPPSDK-3.0/include/CL/cl.h:1359:1: note: declared here
+ clCreateCommandQueue(cl_context                     /* context */,
+ ^
+main.cpp:164:37: warning: ‘_cl_command_queue* clCreateCommandQueue(cl_context, cl_device_id, cl_command_queue_properties, cl_int*)’ is deprecated [-Wdeprecated-declarations]
+   cl_command_queue clCommandQueue = clCreateCommandQueue(clContext,clDevice,CL_QUEUE_PROFILING_ENABLE,&clStatus);
+                                     ^
+In file included from main.cpp:30:0:
+/opt/AMDAPPSDK-3.0/include/CL/cl.h:1359:1: note: declared here
+ clCreateCommandQueue(cl_context                     /* context */,
+ ^
+main.cpp:164:112: warning: ‘_cl_command_queue* clCreateCommandQueue(cl_context, cl_device_id, cl_command_queue_properties, cl_int*)’ is deprecated [-Wdeprecated-declarations]
+   cl_command_queue clCommandQueue = clCreateCommandQueue(clContext,clDevice,CL_QUEUE_PROFILING_ENABLE,&clStatus);
+                                                                                                                ^
+In file included from main.cpp:30:0:
+/opt/AMDAPPSDK-3.0/include/CL/cl.h:1359:1: note: declared here
+ clCreateCommandQueue(cl_context                     /* context */,
+ ^
+main.cpp:113:32: warning: ignoring return value of ‘int fscanf(FILE*, const char*, ...)’, declared with attribute warn_unused_result [-Wunused-result]
+   fscanf(fp,"%d",&num_of_nodes);
+                                ^
+main.cpp:122:38: warning: ignoring return value of ‘int fscanf(FILE*, const char*, ...)’, declared with attribute warn_unused_result [-Wunused-result]
+     fscanf(fp,"%d %d",&start,&edgeno);
+                                      ^
+main.cpp:128:26: warning: ignoring return value of ‘int fscanf(FILE*, const char*, ...)’, declared with attribute warn_unused_result [-Wunused-result]
+   fscanf(fp,"%d",&source);
+                          ^
+main.cpp:129:32: warning: ignoring return value of ‘int fscanf(FILE*, const char*, ...)’, declared with attribute warn_unused_result [-Wunused-result]
+   fscanf(fp,"%d",&num_of_edges);
+                                ^
+main.cpp:134:24: warning: ignoring return value of ‘int fscanf(FILE*, const char*, ...)’, declared with attribute warn_unused_result [-Wunused-result]
+     fscanf(fp,"%d",&id);
+                        ^
+main.cpp:135:26: warning: ignoring return value of ‘int fscanf(FILE*, const char*, ...)’, declared with attribute warn_unused_result [-Wunused-result]
+     fscanf(fp,"%d",&cost);
+                          ^

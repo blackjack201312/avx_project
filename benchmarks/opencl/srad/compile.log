@@ -1,0 +1,81 @@
+gcc	 ./main.c \
+		-c \
+		-o ./main.o \
+		-O3
+./main.c: In function ‘main’:
+./main.c:252:9: warning: unknown conversion type character ‘:’ in format [-Wformat=]
+  printf("%.12f s, %.12f % : READ COMMAND LINE PARAMETERS\n",       (fp) (time1-time0) / 1000000, (fp) (time1-time0) / (fp) (time5-time0) * 100);
+         ^
+./main.c:253:9: warning: unknown conversion type character ‘:’ in format [-Wformat=]
+  printf("%.12f s, %.12f % : READ AND RESIZE INPUT IMAGE FROM FILE\n",     (fp) (time2-time1) / 1000000, (fp) (time2-time1) / (fp) (time5-time0) * 100);
+         ^
+./main.c:254:9: warning: unknown conversion type character ‘:’ in format [-Wformat=]
+  printf("%.12f s, %.12f % : SETUP\n",             (fp) (time3-time2) / 1000000, (fp) (time3-time2) / (fp) (time5-time0) * 100);
+         ^
+./main.c:255:9: warning: unknown conversion type character ‘:’ in format [-Wformat=]
+  printf("%.12f s, %.12f % : KERNEL\n",             (fp) (time4-time3) / 1000000, (fp) (time4-time3) / (fp) (time5-time0) * 100);
+         ^
+./main.c:256:9: warning: unknown conversion type character ‘:’ in format [-Wformat=]
+  printf("%.12f s, %.12f % : WRITE OUTPUT IMAGE TO FILE\n",        (fp) (time5-time4) / 1000000, (fp) (time5-time4) / (fp) (time5-time0) * 100);
+         ^
+./main.c:257:9: warning: unknown conversion type character ‘:’ in format [-Wformat=]
+  printf("%.12f s, %.12f % : FREE MEMORY\n",            (fp) (time6-time5) / 1000000, (fp) (time6-time5) / (fp) (time5-time0) * 100);
+         ^
+gcc	 ./kernel/kernel_gpu_opencl_wrapper.c \
+		-c \
+		-o ./kernel/kernel_gpu_opencl_wrapper.o \
+		-O3 \
+		-I/opt/AMDAPPSDK-3.0/include/ 
+./kernel/kernel_gpu_opencl_wrapper.c: In function ‘kernel_gpu_opencl_wrapper’:
+./kernel/kernel_gpu_opencl_wrapper.c:169:2: warning: ‘clCreateCommandQueue’ is deprecated [-Wdeprecated-declarations]
+  command_queue = clCreateCommandQueue( context, 
+  ^
+In file included from ./kernel/kernel_gpu_opencl_wrapper.c:22:0:
+/opt/AMDAPPSDK-3.0/include/CL/cl.h:1359:1: note: declared here
+ clCreateCommandQueue(cl_context                     /* context */,
+ ^
+./kernel/kernel_gpu_opencl_wrapper.c:860:13: warning: implicit declaration of function ‘get_time’ [-Wimplicit-function-declaration]
+   start_t = get_time()/1e6;
+             ^
+./kernel/kernel_gpu_opencl_wrapper.c:1041:13: warning: implicit declaration of function ‘ceil’ [-Wimplicit-function-declaration]
+     niter = ceil((double)secs / tPerIter) + 1;
+             ^
+./kernel/kernel_gpu_opencl_wrapper.c:1041:13: warning: incompatible implicit declaration of built-in function ‘ceil’
+./kernel/kernel_gpu_opencl_wrapper.c:1041:13: note: include ‘<math.h>’ or provide a declaration of ‘ceil’
+gcc	./util/opencl/opencl.c \
+		-c \
+		-o ./util/opencl/opencl.o \
+		-O3 \
+		-I/opt/AMDAPPSDK-3.0/include/ 
+gcc	./util/graphics/graphics.c \
+		-c \
+		-o ./util/graphics/graphics.o \
+		-O3
+./util/graphics/graphics.c: In function ‘read_graphics’:
+./util/graphics/graphics.c:155:5: warning: ignoring return value of ‘fscanf’, declared with attribute warn_unused_result [-Wunused-result]
+     fscanf(fid, "%d", &temp);
+     ^
+./util/graphics/graphics.c:163:5: warning: ignoring return value of ‘fscanf’, declared with attribute warn_unused_result [-Wunused-result]
+     fscanf(fid, "%d", &temp);
+     ^
+gcc	./util/graphics/resize.c \
+		-c \
+		-o ./util/graphics/resize.o \
+		-O3
+gcc	./util/timer/timer.c \
+		-c \
+		-o ./util/timer/timer.o \
+		-O3
+./util/timer/timer.c: In function ‘get_time’:
+./util/timer/timer.c:24:2: warning: implicit declaration of function ‘gettimeofday’ [-Wimplicit-function-declaration]
+  gettimeofday(&tv, NULL);
+  ^
+gcc	./main.o \
+		./kernel/kernel_gpu_opencl_wrapper.o \
+		./util/opencl/opencl.o \
+		./util/graphics/graphics.o \
+		./util/graphics/resize.o \
+		./util/timer/timer.o \
+		-lm \
+		-L/opt/AMDAPPSDK-3.0/lib/x86_64/ -lOpenCL \
+		-lOpenCL -o srad

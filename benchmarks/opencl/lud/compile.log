@@ -1,0 +1,63 @@
+g++  -g -O3 -Wall -o lud lud.cpp ./common/common.c -I/opt/AMDAPPSDK-3.0/include/  -I./common -L/opt/AMDAPPSDK-3.0/lib/x86_64/ -lOpenCL -lOpenCL
+lud.cpp: In function ‘int initialize(int)’:
+lud.cpp:78:14: warning: ‘_cl_command_queue* clCreateCommandQueue(cl_context, cl_device_id, cl_command_queue_properties, cl_int*)’ is deprecated [-Wdeprecated-declarations]
+  cmd_queue = clCreateCommandQueue( context, device_list[0], 0, NULL );
+              ^
+In file included from lud.cpp:27:0:
+/opt/AMDAPPSDK-3.0/include/CL/cl.h:1359:1: note: declared here
+ clCreateCommandQueue(cl_context                     /* context */,
+ ^
+lud.cpp:78:14: warning: ‘_cl_command_queue* clCreateCommandQueue(cl_context, cl_device_id, cl_command_queue_properties, cl_int*)’ is deprecated [-Wdeprecated-declarations]
+  cmd_queue = clCreateCommandQueue( context, device_list[0], 0, NULL );
+              ^
+In file included from lud.cpp:27:0:
+/opt/AMDAPPSDK-3.0/include/CL/cl.h:1359:1: note: declared here
+ clCreateCommandQueue(cl_context                     /* context */,
+ ^
+lud.cpp:78:69: warning: ‘_cl_command_queue* clCreateCommandQueue(cl_context, cl_device_id, cl_command_queue_properties, cl_int*)’ is deprecated [-Wdeprecated-declarations]
+  cmd_queue = clCreateCommandQueue( context, device_list[0], 0, NULL );
+                                                                     ^
+In file included from lud.cpp:27:0:
+/opt/AMDAPPSDK-3.0/include/CL/cl.h:1359:1: note: declared here
+ clCreateCommandQueue(cl_context                     /* context */,
+ ^
+lud.cpp: In function ‘int main(int, char**)’:
+lud.cpp:191:29: warning: deprecated conversion from string constant to ‘char*’ [-Wwrite-strings]
+  char * kernel_lud_diag   = "lud_diagonal";
+                             ^
+lud.cpp:192:29: warning: deprecated conversion from string constant to ‘char*’ [-Wwrite-strings]
+  char * kernel_lud_peri   = "lud_perimeter";
+                             ^
+lud.cpp:193:29: warning: deprecated conversion from string constant to ‘char*’ [-Wwrite-strings]
+  char * kernel_lud_inter  = "lud_internal";
+                             ^
+lud.cpp:195:49: warning: format ‘%s’ expects a matching ‘char*’ argument [-Wformat=]
+  if(!fp) { printf("ERROR: unable to open '%s'\n"); return -1; }
+                                                 ^
+lud.cpp:283:45: warning: narrowing conversion of ‘((((matrix_dim - i) / 16) + -1) * 32)’ from ‘int’ to ‘size_t {aka long unsigned int}’ inside { } is ill-formed in C++11 [-Wnarrowing]
+    size_t global_work2[3] = {BLOCK_SIZE * 2 * ((matrix_dim-i)/BLOCK_SIZE-1), 1, 1};
+                                             ^
+lud.cpp:295:41: warning: narrowing conversion of ‘((((matrix_dim - i) / 16) + -1) * 16)’ from ‘int’ to ‘size_t {aka long unsigned int}’ inside { } is ill-formed in C++11 [-Wnarrowing]
+    size_t global_work3[3] = {BLOCK_SIZE * ((matrix_dim-i)/BLOCK_SIZE-1), BLOCK_SIZE * ((matrix_dim-i)/BLOCK_SIZE-1), 1};
+                                         ^
+lud.cpp:295:85: warning: narrowing conversion of ‘((((matrix_dim - i) / 16) + -1) * 16)’ from ‘int’ to ‘size_t {aka long unsigned int}’ inside { } is ill-formed in C++11 [-Wnarrowing]
+    size_t global_work3[3] = {BLOCK_SIZE * ((matrix_dim-i)/BLOCK_SIZE-1), BLOCK_SIZE * ((matrix_dim-i)/BLOCK_SIZE-1), 1};
+                                                                                     ^
+lud.cpp:196:51: warning: ignoring return value of ‘size_t fread(void*, size_t, size_t, FILE*)’, declared with attribute warn_unused_result [-Wunused-result]
+  fread(source + strlen(source), sourcesize, 1, fp);
+                                                   ^
+./common/common.c: In function ‘func_ret_t lud_verify(float*, float*, int)’:
+./common/common.c:187:1: warning: no return statement in function returning non-void [-Wreturn-type]
+ }
+ ^
+./common/common.c: In function ‘func_ret_t create_matrix_from_file(float**, const char*, int*)’:
+./common/common.c:51:28: warning: ignoring return value of ‘int fscanf(FILE*, const char*, ...)’, declared with attribute warn_unused_result [-Wunused-result]
+   fscanf(fp, "%d\n", &size);
+                            ^
+./common/common.c:61:40: warning: ignoring return value of ‘int fscanf(FILE*, const char*, ...)’, declared with attribute warn_unused_result [-Wunused-result]
+           fscanf(fp, "%f ", m+i*size+j);
+                                        ^
+./common/common.c: In function ‘func_ret_t create_matrix_from_random(float**, int)’:
+./common/common.c:123:10: warning: ‘m’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   *mp = m;
+          ^

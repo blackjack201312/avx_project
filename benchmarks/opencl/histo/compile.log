@@ -1,0 +1,69 @@
+g++ -g -O2  util.cpp -c
+In file included from util.cpp:15:0:
+util.h:12:0: warning: "UINT8_MAX" redefined
+ #define UINT8_MAX 255
+ ^
+In file included from /usr/lib/gcc/x86_64-linux-gnu/5/include/stdint.h:9:0,
+                 from util.cpp:9:
+/usr/include/stdint.h:166:0: note: this is the location of the previous definition
+ # define UINT8_MAX  (255)
+ ^
+In file included from util.cpp:15:0:
+util.h:13:0: warning: "UINT32_MAX" redefined
+ #define UINT32_MAX 4294967295
+ ^
+In file included from /usr/lib/gcc/x86_64-linux-gnu/5/include/stdint.h:9:0,
+                 from util.cpp:9:
+/usr/include/stdint.h:168:0: note: this is the location of the previous definition
+ # define UINT32_MAX  (4294967295U)
+ ^
+g++ -g -O2  OpenCL_common.cpp -c -I/opt/AMDAPPSDK-3.0/include/  -L/opt/AMDAPPSDK-3.0/lib/x86_64/ -lOpenCL -lOpenCL
+OpenCL_common.cpp: In function ‘const char* oclDebugErrString(cl_int, cl_device_id)’:
+OpenCL_common.cpp:247:80: warning: format ‘%lu’ expects argument of type ‘long unsigned int’, but argument 3 has type ‘cl_uint {aka unsigned int}’ [-Wformat=]
+    fprintf(stderr, "  Device Maximum block allocation size: %lu\n", maxMemAlloc);
+                                                                                ^
+g++ -g -O2  main.cpp OpenCL_common.o util.o -o histo -I/opt/AMDAPPSDK-3.0/include/  -L/opt/AMDAPPSDK-3.0/lib/x86_64/ -lOpenCL -lOpenCL
+In file included from main.cpp:15:0:
+util.h:12:0: warning: "UINT8_MAX" redefined
+ #define UINT8_MAX 255
+ ^
+In file included from /usr/lib/gcc/x86_64-linux-gnu/5/include/stdint.h:9:0,
+                 from /opt/AMDAPPSDK-3.0/include/CL/cl_platform.h:232,
+                 from /opt/AMDAPPSDK-3.0/include/CL/cl.h:30,
+                 from main.cpp:12:
+/usr/include/stdint.h:166:0: note: this is the location of the previous definition
+ # define UINT8_MAX  (255)
+ ^
+In file included from main.cpp:15:0:
+util.h:13:0: warning: "UINT32_MAX" redefined
+ #define UINT32_MAX 4294967295
+ ^
+In file included from /usr/lib/gcc/x86_64-linux-gnu/5/include/stdint.h:9:0,
+                 from /opt/AMDAPPSDK-3.0/include/CL/cl_platform.h:232,
+                 from /opt/AMDAPPSDK-3.0/include/CL/cl.h:30,
+                 from main.cpp:12:
+/usr/include/stdint.h:168:0: note: this is the location of the previous definition
+ # define UINT32_MAX  (4294967295U)
+ ^
+main.cpp: In function ‘int main(int, char**)’:
+main.cpp:145:20: warning: ‘_cl_command_queue* clCreateCommandQueue(cl_context, cl_device_id, cl_command_queue_properties, cl_int*)’ is deprecated [-Wdeprecated-declarations]
+   clCommandQueue = clCreateCommandQueue(clContext, clDevice, CL_QUEUE_PROFILING_ENABLE, &ciErrNum);
+                    ^
+In file included from main.cpp:12:0:
+/opt/AMDAPPSDK-3.0/include/CL/cl.h:1359:1: note: declared here
+ clCreateCommandQueue(cl_context                     /* context */,
+ ^
+main.cpp:145:20: warning: ‘_cl_command_queue* clCreateCommandQueue(cl_context, cl_device_id, cl_command_queue_properties, cl_int*)’ is deprecated [-Wdeprecated-declarations]
+   clCommandQueue = clCreateCommandQueue(clContext, clDevice, CL_QUEUE_PROFILING_ENABLE, &ciErrNum);
+                    ^
+In file included from main.cpp:12:0:
+/opt/AMDAPPSDK-3.0/include/CL/cl.h:1359:1: note: declared here
+ clCreateCommandQueue(cl_context                     /* context */,
+ ^
+main.cpp:145:98: warning: ‘_cl_command_queue* clCreateCommandQueue(cl_context, cl_device_id, cl_command_queue_properties, cl_int*)’ is deprecated [-Wdeprecated-declarations]
+   clCommandQueue = clCreateCommandQueue(clContext, clDevice, CL_QUEUE_PROFILING_ENABLE, &ciErrNum);
+                                                                                                  ^
+In file included from main.cpp:12:0:
+/opt/AMDAPPSDK-3.0/include/CL/cl.h:1359:1: note: declared here
+ clCreateCommandQueue(cl_context                     /* context */,
+ ^

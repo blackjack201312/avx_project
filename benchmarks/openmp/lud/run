@@ -1,0 +1,7 @@
+if [ ! -f ./omp/lud_omp ];
+then
+	make
+fi
+# ./omp/lud_omp -n 4 -i ../../data/lud/512.dat 
+# ./omp/lud_omp -s 4800
+./omp/lud_omp -s 8000

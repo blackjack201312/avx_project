@@ -1,0 +1,10 @@
+Random number generator seed: 7
+Input layer size : 65536
+Starting training kernel
+num_devices = 1
+Performing GPU computation
+kernel1(): iterated 1 times, aver time is 0.101089 ms.
+kernel2() iterated 1 times, aver time is 0.146151 ms.
+iterated 1 times, average time is 0.247240 ms.
+
+Finish the training for one iteration

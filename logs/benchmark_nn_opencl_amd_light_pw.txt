@@ -1,0 +1,31 @@
+CODEXL POWER PROFILE REPORT
+
+
+PROFILE DETAILS
+    CPU Details:                   Family(0x6) Model(0x2d)
+    CPU Core Mask:                 0xff
+    Sampling Interval:             500 milli-seconds
+    Profile Start Time:            May-26-2017_17-13-07
+    Profile Duration:              5 seconds
+
+PROFILED COUNTERS
+    COUNTER ID      NAME                      CATEGORY        UNIT            DESCRIPTION    
+         0.         ellesmere-dgpu-power      Power           Watt            AMD Radeon Series-Average Discrete-GPU Power for the sampling period, reported in Watts. This is an estimated consumption value which is calculated based on dGPU activity levels.
+         2.         ellesmere-dgpu-measured-t Temperature     Centigrade      AMD Radeon Series-Measured Discrete-GPU Average Temperature, reported in Celsius. The reported value is normalized and scaled, relative to the specific processor's maximum operating temperature. This value can be used to indicate rise and decline of temperature.
+         3.         ellesmere-dgpu-avg-freque Frequency       MHz             AMD Radeon Series-Average Discrete-GPU Frequency for the sampling period, reported in MHz.
+         5.         ellesmere-dgpu-load-volta Voltage         Volt            AMD Radeon Series-Average Discrete-GPU Load voltage for the sampling period, reported in Volts.
+         6.         ellesmere-dgpu-current    Current         Milli Ampere    AMD Radeon Series-Average Discrete-GPU current for the sampling period, reported in Milli-Amperes.
+
+PROFILE RECORDS
+RecordId  Timestamp       Ellesmere-dGPU-Po Ellesmere-dGPU-Me Ellesmere-dGPU-Av Ellesmere-dGPU-Lo Ellesmere-dGPU-Cu 
+
+1	17:13:7:735        7.633            28.383           300.000           0.7751              0.000          
+2	17:13:8:235        7.633            28.457           300.000           0.7751              0.000          
+3	17:13:8:735        7.633            28.441           300.000           0.7751              0.000          
+4	17:13:9:235        7.633            28.371           300.000           0.7751              0.000          
+5	17:13:9:735        7.633            28.398           300.000           0.7751              0.000          
+6	17:13:10:235       7.633            28.457           300.000           0.7751              0.000          
+7	17:13:10:735       7.633            28.438           300.000           0.7751              0.000          
+8	17:13:11:235       7.633            28.328           300.000           0.7751              0.000          
+9	17:13:11:735       7.633            28.367           300.000           0.7751              0.000          
+10	17:13:12:235       7.633            28.383           300.000           0.7751              0.000          

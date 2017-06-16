@@ -1,0 +1,6 @@
+if [ ! -f ./needle ];
+then
+	make
+fi
+
+./needle 2048 10 2 

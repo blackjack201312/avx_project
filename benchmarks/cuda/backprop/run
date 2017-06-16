@@ -1,0 +1,3 @@
+DEV_ID="${DEV_ID:-0}"
+ITER="${ITER:-100}"
+./backprop 65536 ${DEV_ID} ${ITER}

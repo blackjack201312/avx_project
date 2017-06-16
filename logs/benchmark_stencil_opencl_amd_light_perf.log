@@ -1,0 +1,7 @@
+OpenCL accelerated 7 points stencil codes****
+Author: Li-Wen Chang <lchang20@illinois.edu>
+Usage: probe nx ny nz t
+nx: the grid size x
+ny: the grid size y
+nz: the grid size z
+t: the iteration time

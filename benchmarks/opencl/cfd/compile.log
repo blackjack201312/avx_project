@@ -1,0 +1,32 @@
+g++  euler3d.cpp -o euler3d -I/opt/AMDAPPSDK-3.0/include/  -L/opt/AMDAPPSDK-3.0/lib/x86_64/ -lOpenCL -lOpenCL -O3 
+euler3d.cpp:43:2: warning: #warning "the kernels may fail too launch on some systems if the block length is too large" [-Wcpp]
+ #warning "the kernels may fail too launch on some systems if the block length is too large"
+  ^
+In file included from euler3d.cpp:18:0:
+CLHelper.h: In function ‘void _clInit(std::__cxx11::string, int)’:
+CLHelper.h:467:24: warning: ‘_cl_command_queue* clCreateCommandQueue(cl_context, cl_device_id, cl_command_queue_properties, cl_int*)’ is deprecated [-Wdeprecated-declarations]
+     oclHandles.queue = clCreateCommandQueue(oclHandles.context, 
+                        ^
+In file included from CLHelper.h:9:0,
+                 from euler3d.cpp:18:
+/opt/AMDAPPSDK-3.0/include/CL/cl.h:1359:1: note: declared here
+ clCreateCommandQueue(cl_context                     /* context */,
+ ^
+In file included from euler3d.cpp:18:0:
+CLHelper.h:467:24: warning: ‘_cl_command_queue* clCreateCommandQueue(cl_context, cl_device_id, cl_command_queue_properties, cl_int*)’ is deprecated [-Wdeprecated-declarations]
+     oclHandles.queue = clCreateCommandQueue(oclHandles.context, 
+                        ^
+In file included from CLHelper.h:9:0,
+                 from euler3d.cpp:18:
+/opt/AMDAPPSDK-3.0/include/CL/cl.h:1359:1: note: declared here
+ clCreateCommandQueue(cl_context                     /* context */,
+ ^
+In file included from euler3d.cpp:18:0:
+CLHelper.h:470:54: warning: ‘_cl_command_queue* clCreateCommandQueue(cl_context, cl_device_id, cl_command_queue_properties, cl_int*)’ is deprecated [-Wdeprecated-declarations]
+                                             &resultCL);
+                                                      ^
+In file included from CLHelper.h:9:0,
+                 from euler3d.cpp:18:
+/opt/AMDAPPSDK-3.0/include/CL/cl.h:1359:1: note: declared here
+ clCreateCommandQueue(cl_context                     /* context */,
+ ^

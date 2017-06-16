@@ -1,0 +1,7 @@
+WG size of kernel = 16 X 16
+Platform: Advanced Micro Devices, Inc.
+Device: Ellesmere
+iterated 1 times, average time is 0.587940 ms.
+
+Kernel time: 0.016 seconds
+Total time: 0.017 seconds

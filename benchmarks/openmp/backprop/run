@@ -1,0 +1,5 @@
+if [ ! -f ./backprop ];
+then
+	make
+fi
+./backprop 65536

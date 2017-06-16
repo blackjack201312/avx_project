@@ -1,0 +1,11 @@
+gcc  -g -O3 -Wall -o hotspot -I/opt/AMDAPPSDK-3.0/include/  OpenCL_helper_library.c hotspot.c -L/opt/AMDAPPSDK-3.0/lib/x86_64/ -lOpenCL -lOpenCL -lm
+hotspot.c: In function ‘main’:
+hotspot.c:222:2: warning: ‘clCreateCommandQueue’ is deprecated [-Wdeprecated-declarations]
+  command_queue = clCreateCommandQueue(context, device, 0, &error);
+  ^
+In file included from OpenCL_helper_library.h:4:0,
+                 from hotspot.h:4,
+                 from hotspot.c:1:
+/opt/AMDAPPSDK-3.0/include/CL/cl.h:1359:1: note: declared here
+ clCreateCommandQueue(cl_context                     /* context */,
+ ^

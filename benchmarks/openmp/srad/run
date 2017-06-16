@@ -1,0 +1,6 @@
+if [ ! -f ./srad_v2/srad ];
+then
+	make
+fi
+
+./srad_v2/srad 2048 2048 0 127 0 127 2 0.5 2

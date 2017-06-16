@@ -1,0 +1,55 @@
+g++ -g -O2  cluster.c -c
+g++ -g -O2  getopt.c -c
+g++ -g -O2  read_input.c -c
+read_input.c: In function ‘void usage(char*)’:
+read_input.c:98:3: warning: deprecated conversion from string constant to ‘char*’ [-Wwrite-strings]
+   "    -o               :output cluster center coordinates     [default=off]\n";
+   ^
+read_input.c: In function ‘int setup(int, char**)’:
+read_input.c:168:46: warning: ignoring return value of ‘ssize_t read(int, void*, size_t)’, declared with attribute warn_unused_result [-Wunused-result]
+         read(infile, &npoints,   sizeof(int));
+                                              ^
+read_input.c:169:46: warning: ignoring return value of ‘ssize_t read(int, void*, size_t)’, declared with attribute warn_unused_result [-Wunused-result]
+         read(infile, &nfeatures, sizeof(int));        
+                                              ^
+read_input.c:178:59: warning: ignoring return value of ‘ssize_t read(int, void*, size_t)’, declared with attribute warn_unused_result [-Wunused-result]
+         read(infile, buf, npoints*nfeatures*sizeof(float));
+                                                           ^
+g++ -g -O2  kmeans_clustering.c -c
+g++ -g -O2  rmse.c -c
+g++  -g -O2  -lOpenCL kmeans.cpp cluster.o getopt.o read_input.o kmeans_clustering.o rmse.o -o kmeans -I/opt/AMDAPPSDK-3.0/include/  -I/opt/AMDAPPSDK-3.0/shared/inc/ -L/opt/AMDAPPSDK-3.0/lib/x86_64/ -lOpenCL
+kmeans.cpp: In function ‘int initialize(int)’:
+kmeans.cpp:85:14: warning: ‘_cl_command_queue* clCreateCommandQueue(cl_context, cl_device_id, cl_command_queue_properties, cl_int*)’ is deprecated [-Wdeprecated-declarations]
+  cmd_queue = clCreateCommandQueue( context, device_list[0], 0, NULL );
+              ^
+In file included from kmeans.cpp:25:0:
+/opt/AMDAPPSDK-3.0/include/CL/cl.h:1359:1: note: declared here
+ clCreateCommandQueue(cl_context                     /* context */,
+ ^
+kmeans.cpp:85:14: warning: ‘_cl_command_queue* clCreateCommandQueue(cl_context, cl_device_id, cl_command_queue_properties, cl_int*)’ is deprecated [-Wdeprecated-declarations]
+  cmd_queue = clCreateCommandQueue( context, device_list[0], 0, NULL );
+              ^
+In file included from kmeans.cpp:25:0:
+/opt/AMDAPPSDK-3.0/include/CL/cl.h:1359:1: note: declared here
+ clCreateCommandQueue(cl_context                     /* context */,
+ ^
+kmeans.cpp:85:69: warning: ‘_cl_command_queue* clCreateCommandQueue(cl_context, cl_device_id, cl_command_queue_properties, cl_int*)’ is deprecated [-Wdeprecated-declarations]
+  cmd_queue = clCreateCommandQueue( context, device_list[0], 0, NULL );
+                                                                     ^
+In file included from kmeans.cpp:25:0:
+/opt/AMDAPPSDK-3.0/include/CL/cl.h:1359:1: note: declared here
+ clCreateCommandQueue(cl_context                     /* context */,
+ ^
+kmeans.cpp: In function ‘int allocate(int, int, int, float**)’:
+kmeans.cpp:131:20: warning: deprecated conversion from string constant to ‘char*’ [-Wwrite-strings]
+  char * tempchar = "./kmeans.cl";
+                    ^
+kmeans.cpp:156:28: warning: deprecated conversion from string constant to ‘char*’ [-Wwrite-strings]
+  char * kernel_kmeans_c  = "kmeans_kernel_c";
+                            ^
+kmeans.cpp:157:24: warning: deprecated conversion from string constant to ‘char*’ [-Wwrite-strings]
+  char * kernel_swap  = "kmeans_swap"; 
+                        ^
+kmeans.cpp:134:51: warning: ignoring return value of ‘size_t fread(void*, size_t, size_t, FILE*)’, declared with attribute warn_unused_result [-Wunused-result]
+  fread(source + strlen(source), sourcesize, 1, fp);
+                                                   ^

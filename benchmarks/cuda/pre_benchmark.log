@@ -1,0 +1,299 @@
+nohup: ignoring input
+rm -f *.o *~ backprop backprop_cuda.linkinfo
+gcc -g  -O2 backprop.c -c
+gcc -g  -O2 facetrain.c -c
+gcc -g  -O2 imagenet.c -c
+/usr/local/cuda-8.0/bin/nvcc -I/usr/local/cuda-8.0/include -O2 -c backprop_cuda.cu
+nvcc warning : The 'compute_20', 'sm_20', and 'sm_21' architectures are deprecated, and may be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
+gcc -g  -O2 backprop.o facetrain.o imagenet.o backprop_cuda.o -o backprop -L/usr/local/cuda-8.0/lib64 -lcuda -lcudart -lm -lstdc++
+waiting 30 seconds.
+Random number generator seed: 7
+Input layer size : 65536
+Starting training kernel
+Device ID is 0, Loop is 10 
+Choosing CUDA Device....
+Set Result is: no error
+Name:                     GeForce GTX 1080
+Performing GPU computation
+Kernal Elapsed time : 2.969792 ms
+Training done
+waiting 30 seconds.
+Random number generator seed: 7
+Input layer size : 65536
+Starting training kernel
+Device ID is 1, Loop is 10 
+Choosing CUDA Device....
+Set Result is: no error
+Name:                     GeForce GTX 980
+Performing GPU computation
+Kernal Elapsed time : 3.595456 ms
+Training done
+rm -f hotspot hotspot.linkinfo result.txt
+/usr/local/cuda-8.0/bin/nvcc  hotspot.cu -o hotspot -I/usr/local/cuda-8.0/include -L/usr/local/cuda-8.0/lib64 
+nvcc warning : The 'compute_20', 'sm_20', and 'sm_21' architectures are deprecated, and may be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
+hotspot.cu(89): warning: conversion from a string literal to "char *" is deprecated
+
+hotspot.cu(92): warning: conversion from a string literal to "char *" is deprecated
+
+hotspot.cu(331): warning: conversion from a string literal to "char *" is deprecated
+
+hotspot.cu(89): warning: conversion from a string literal to "char *" is deprecated
+
+hotspot.cu(92): warning: conversion from a string literal to "char *" is deprecated
+
+hotspot.cu(331): warning: conversion from a string literal to "char *" is deprecated
+
+waiting 30 seconds.
+WG size of kernel = 16 X 16
+Device ID is 0, Loop is 10 
+Choosing CUDA Device....
+Set Result is: no error
+Name:                     GeForce GTX 1080
+pyramidHeight: 2
+gridSize: [512, 512]
+border:[2, 2]
+blockGrid:[43, 43]
+targetBlock:[12, 12]
+Start computing the transient temperature
+Kernal Elapsed time : 1.145120 ms
+Ending simulation
+waiting 30 seconds.
+WG size of kernel = 16 X 16
+Device ID is 1, Loop is 10 
+Choosing CUDA Device....
+Set Result is: no error
+Name:                     GeForce GTX 980
+pyramidHeight: 2
+gridSize: [512, 512]
+border:[2, 2]
+blockGrid:[43, 43]
+targetBlock:[12, 12]
+Start computing the transient temperature
+Kernal Elapsed time : 2.015936 ms
+Ending simulation
+rm -f pathfinder
+/usr/local/cuda-8.0/bin/nvcc pathfinder.cu -o pathfinder -I/usr/local/cuda-8.0/include -L/usr/local/cuda-8.0/lib64 
+nvcc warning : The 'compute_20', 'sm_20', and 'sm_21' architectures are deprecated, and may be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
+waiting 30 seconds.
+Device ID is 0, Loop is 10 
+Choosing CUDA Device....
+Set Result is: no error
+Name:                     GeForce GTX 1080
+pyramidHeight: 20
+gridSize: [1000000]
+border:[20]
+blockSize: 256
+blockGrid:[4630]
+targetBlock:[216]
+Kernal Elapsed time : 23.065887 ms
+waiting 30 seconds.
+Device ID is 1, Loop is 10 
+Choosing CUDA Device....
+Set Result is: no error
+Name:                     GeForce GTX 980
+pyramidHeight: 20
+gridSize: [1000000]
+border:[20]
+blockSize: 256
+blockGrid:[4630]
+targetBlock:[216]
+Kernal Elapsed time : 32.763554 ms
+cd cuda; make clean
+make[1]: Entering directory `/home/blackjack/rodinia_3.1/cuda/lud/cuda'
+rm -f lud_cuda ../common/common.o lud.o lud_kernel.o *.linkinfo
+make[1]: Leaving directory `/home/blackjack/rodinia_3.1/cuda/lud/cuda'
+cd cuda; make
+make[1]: Entering directory `/home/blackjack/rodinia_3.1/cuda/lud/cuda'
+nvcc  -I../common -I/common/inc  -L/lib  -O3 -use_fast_math  -DGPU_TIMER  -o ../common/common.o -c ../common/common.c
+nvcc warning : The 'compute_20', 'sm_20', and 'sm_21' architectures are deprecated, and may be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
+../common/common.c: In function ‘create_matrix_from_file’:
+../common/common.c:51: warning: ignoring return value of ‘fscanf’, declared with attribute warn_unused_result
+../common/common.c:61: warning: ignoring return value of ‘fscanf’, declared with attribute warn_unused_result
+nvcc  -I../common -I/common/inc  -L/lib  -O3 -use_fast_math  -DGPU_TIMER  -o lud.o -c lud.cu
+nvcc warning : The 'compute_20', 'sm_20', and 'sm_21' architectures are deprecated, and may be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
+nvcc  -I../common -I/common/inc  -L/lib  -O3 -use_fast_math  -DGPU_TIMER  -o lud_kernel.o -c lud_kernel.cu
+nvcc warning : The 'compute_20', 'sm_20', and 'sm_21' architectures are deprecated, and may be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
+nvcc -I../common -I/common/inc  -L/lib  -O3 -use_fast_math  -o lud_cuda  ../common/common.o lud.o lud_kernel.o
+nvcc warning : The 'compute_20', 'sm_20', and 'sm_21' architectures are deprecated, and may be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
+make[1]: Leaving directory `/home/blackjack/rodinia_3.1/cuda/lud/cuda'
+waiting 30 seconds.
+WG size of kernel = 16 X 16
+Generate input matrix internally, size =8000
+Device ID is 0
+Choosing CUDA Device....
+Creating matrix internally size=8000
+[ITERATION NUM]:10
+Kernal Elapsed time : 4979.635000 ms
+waiting 30 seconds.
+WG size of kernel = 16 X 16
+Generate input matrix internally, size =8000
+Device ID is 1
+Choosing CUDA Device....
+Creating matrix internally size=8000
+[ITERATION NUM]:10
+Kernal Elapsed time : 6579.354000 ms
+rm -f needle needle.linkinfo result.txt
+/usr/local/cuda-8.0/bin/nvcc  needle.cu -o needle -I/usr/local/cuda-8.0/include -L/usr/local/cuda-8.0/lib64 
+nvcc warning : The 'compute_20', 'sm_20', and 'sm_21' architectures are deprecated, and may be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
+waiting 30 seconds.
+WG size of kernel = 16 
+Device ID is 0, Loop is 10 
+Choosing CUDA Device....
+Set Result is: no error
+Name:                     GeForce GTX 1080
+Start Needleman-Wunsch
+Processing top-left matrix
+Kernal Elapsed time : 16.002369 ms
+waiting 30 seconds.
+WG size of kernel = 16 
+Device ID is 1, Loop is 10 
+Choosing CUDA Device....
+Set Result is: no error
+Name:                     GeForce GTX 980
+Start Needleman-Wunsch
+Processing top-left matrix
+Kernal Elapsed time : 23.623232 ms
+rm -f *.o *~ kmeans kmeans_cuda.linkinfo
+gcc -g -fopenmp -O2 -lstdc++  cluster.c -c
+gcc -g -fopenmp -O2 -lstdc++  getopt.c -c
+gcc -g -fopenmp -O2 -lstdc++  kmeans.c -c
+gcc -g -fopenmp -O2 -lstdc++  kmeans_clustering.c -c
+/usr/local/cuda-8.0/bin/nvcc -I/usr/local/cuda-8.0/include  -O2 -c kmeans_cuda.cu
+nvcc warning : The 'compute_20', 'sm_20', and 'sm_21' architectures are deprecated, and may be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
+kmeans_cuda.cu: In function ‘int kmeansCuda(float**, int, int, int, int*, float**, int*, float**, int, int)’:
+kmeans_cuda.cu:172: warning: comparison between ‘enum cudaError_t’ and ‘enum cudaError_enum’
+kmeans_cuda.cu:180: warning: comparison between ‘enum cudaError_t’ and ‘enum cudaError_enum’
+kmeans_cuda.cu:188: warning: comparison between ‘enum cudaError_t’ and ‘enum cudaError_enum’
+gcc -g -fopenmp -O2 -lstdc++  rmse.c -c
+gcc -g -fopenmp -O2 -lstdc++  cluster.o getopt.o kmeans.o kmeans_clustering.o kmeans_cuda.o rmse.o -o kmeans -L/usr/local/cuda-8.0/lib64 -lcuda -lcudart -lm
+waiting 30 seconds.
+Device ID is 0
+Loop is 10 
+
+I/O completed
+
+Number of objects: 494020
+Number of features: 34
+Device ID is 0, Loop is 10 
+Choosing CUDA Device....
+Set Result is: no error
+Name:                     GeForce GTX 1080
+Kernal Elapsed time : 16.151264 ms
+iterated 10 times
+
+================= Centroid Coordinates =================
+0: 47.98 1617.80 868.56 0.01 0.00 0.03 0.00 0.01 0.00 0.00 0.01 0.00 0.00 0.00 0.00 332.67 293.24 0.18 0.18 0.06 0.06 0.79 0.02 0.03 233.22 189.18 0.75 0.03 0.60 0.01 0.18 0.18 0.06 0.06
+
+1: 0.00 239.00 486.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 8.00 8.00 0.00 0.00 0.00 0.00 1.00 0.00 0.00 19.00 19.00 1.00 0.00 0.05 0.00 0.00 0.00 0.00 0.00
+
+2: 0.00 235.00 1337.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 8.00 8.00 0.00 0.00 0.00 0.00 1.00 0.00 0.00 29.00 29.00 1.00 0.00 0.03 0.00 0.00 0.00 0.00 0.00
+
+3: 0.00 219.00 1337.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 6.00 6.00 0.00 0.00 0.00 0.00 1.00 0.00 0.00 39.00 39.00 1.00 0.00 0.03 0.00 0.00 0.00 0.00 0.00
+
+4: 0.00 217.00 2032.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 6.00 6.00 0.00 0.00 0.00 0.00 1.00 0.00 0.00 49.00 49.00 1.00 0.00 0.02 0.00 0.00 0.00 0.00 0.00
+
+Number of Iteration: 1
+waiting 30 seconds.
+./run: line 3: 27154 Segmentation fault      (core dumped) ./kmeans -o -i ../../data/kmeans/kdd_cup -d ${DEV_ID} -x ${ITER}
+rm -f srad srad.linkinfo result.txt
+/usr/local/cuda-8.0/bin/nvcc  srad.cu -o srad -I/usr/local/cuda-8.0/include -L/usr/local/cuda-8.0/lib64 
+nvcc warning : The 'compute_20', 'sm_20', and 'sm_21' architectures are deprecated, and may be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
+waiting 30 seconds.
+WG size of kernel = 16 X 16
+Device ID is 0 
+Choosing CUDA Device...
+Set Result is: no error
+Name:                GeForce GTX 1080
+Running 10 iterations.
+Randomizing the input matrix
+Start the SRAD main loop
+Finished 10 iterations and spent 0.070447 seconds.
+Computation Done
+waiting 30 seconds.
+WG size of kernel = 16 X 16
+Device ID is 1 
+Choosing CUDA Device...
+Set Result is: no error
+Name:                GeForce GTX 980
+Running 10 iterations.
+Randomizing the input matrix
+Start the SRAD main loop
+Finished 10 iterations and spent 0.075873 seconds.
+Computation Done
+rm -rf *.o nn hurricane_gen
+/usr/local/cuda-8.0/bin/nvcc -cuda nn_cuda.cu
+nvcc warning : The 'compute_20', 'sm_20', and 'sm_21' architectures are deprecated, and may be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
+/usr/local/cuda-8.0/bin/nvcc -o nn nn_cuda.cu
+nvcc warning : The 'compute_20', 'sm_20', and 'sm_21' architectures are deprecated, and may be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
+gcc -g -O3 -Wall -o hurricane_gen hurricane_gen.c -lm
+waiting 30 seconds.
+Setting Iteration as: 10 
+Setting dev_id as: 0 
+Device ID is 0, Loop is 10 
+Choosing CUDA Device....
+Set Result is: no error
+Name:                     GeForce GTX 1080
+Deal with 131072 records.
+Kernal Elapsed time : 0.186944 ms
+1985  3  9  0 22 CHRIS      30.0   9.0   12  289 --> Distance=0.000000
+1958 11 12  6 19 RAFAEL     30.0   8.8   25  796 --> Distance=0.200000
+1960  2  6  0 27 LESLIE     30.2   9.4   25  409 --> Distance=0.447214
+1975  2 22 18 24 DEBBY      30.4   8.7   44  503 --> Distance=0.500000
+1986 10 22 18 20 TONY       30.2   9.6  162  637 --> Distance=0.632456
+1957  4 26  6  3 RAFAEL     30.4   9.5   19   41 --> Distance=0.640312
+1965 11  4 12 27 CHRIS      30.5   9.5   10  466 --> Distance=0.707107
+1955  8  9 18  1 MICHAEL    30.2   9.7  122  288 --> Distance=0.728011
+1990  8  9 18  3 GORDON     30.1   9.8   98   12 --> Distance=0.806226
+1992 11  3 12 19 MICHAEL    29.2   8.7   91  635 --> Distance=0.854400
+waiting 30 seconds.
+Setting Iteration as: 10 
+Setting dev_id as: 1 
+Device ID is 1, Loop is 10 
+Choosing CUDA Device....
+Set Result is: no error
+Name:                     GeForce GTX 980
+Deal with 131072 records.
+Kernal Elapsed time : 0.196544 ms
+1985  3  9  0 22 CHRIS      30.0   9.0   12  289 --> Distance=0.000000
+1958 11 12  6 19 RAFAEL     30.0   8.8   25  796 --> Distance=0.200000
+1960  2  6  0 27 LESLIE     30.2   9.4   25  409 --> Distance=0.447214
+1975  2 22 18 24 DEBBY      30.4   8.7   44  503 --> Distance=0.500000
+1986 10 22 18 20 TONY       30.2   9.6  162  637 --> Distance=0.632456
+1957  4 26  6  3 RAFAEL     30.4   9.5   19   41 --> Distance=0.640312
+1965 11  4 12 27 CHRIS      30.5   9.5   10  466 --> Distance=0.707107
+1955  8  9 18  1 MICHAEL    30.2   9.7  122  288 --> Distance=0.728011
+1990  8  9 18  3 GORDON     30.1   9.8   98   12 --> Distance=0.806226
+1992 11  3 12 19 MICHAEL    29.2   8.7   91  635 --> Distance=0.854400
+rm -f euler3d euler3d_double pre_euler3d pre_euler3d_double *.linkinfo
+nvcc  -O2 -Xptxas -v --gpu-architecture=compute_20 --gpu-code=compute_20 euler3d.cu -o euler3d -I/home/blackjack/NVIDIA_CUDA-8.0_Samples/common/inc  -L/home/blackjack/NVIDIA_CUDA-8.0_Samples/lib 
+nvcc warning : The 'compute_20', 'sm_20', and 'sm_21' architectures are deprecated, and may be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
+nvcc -Xptxas -v -O3 --gpu-architecture=compute_20 --gpu-code=compute_20 euler3d_double.cu -o euler3d_double -I/home/blackjack/NVIDIA_CUDA-8.0_Samples/common/inc  -L/home/blackjack/NVIDIA_CUDA-8.0_Samples/lib 
+nvcc warning : The 'compute_20', 'sm_20', and 'sm_21' architectures are deprecated, and may be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
+nvcc -Xptxas -v -O3 --gpu-architecture=compute_20 --gpu-code=compute_20 pre_euler3d.cu -o pre_euler3d -I/home/blackjack/NVIDIA_CUDA-8.0_Samples/common/inc  -L/home/blackjack/NVIDIA_CUDA-8.0_Samples/lib 
+nvcc warning : The 'compute_20', 'sm_20', and 'sm_21' architectures are deprecated, and may be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
+pre_euler3d.cu:36: warning: #warning "the kernels may fail too launch on some systems if the block length is too large"
+pre_euler3d.cu:36: warning: #warning "the kernels may fail too launch on some systems if the block length is too large"
+nvcc -Xptxas -v -O3 --gpu-architecture=compute_20 --gpu-code=compute_20 pre_euler3d_double.cu -o pre_euler3d_double -I/home/blackjack/NVIDIA_CUDA-8.0_Samples/common/inc  -L/home/blackjack/NVIDIA_CUDA-8.0_Samples/lib 
+nvcc warning : The 'compute_20', 'sm_20', and 'sm_21' architectures are deprecated, and may be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
+waiting 30 seconds.
+WG size of kernel:initialize = 192, WG size of kernel:compute_step_factor = 192, WG size of kernel:compute_flux = 192, WG size of kernel:time_step = 192
+Device ID is 0, Loop is 10 
+Choosing CUDA Device....
+Name:                     GeForce GTX 1080
+Starting...
+Kernal Elapsed time : 7.22 ms
+Saving solution...
+Saved solution...
+Cleaning up...
+Done...
+waiting 30 seconds.
+WG size of kernel:initialize = 192, WG size of kernel:compute_step_factor = 192, WG size of kernel:compute_flux = 192, WG size of kernel:time_step = 192
+Device ID is 1, Loop is 10 
+Choosing CUDA Device....
+Name:                     GeForce GTX 980
+Starting...
+Kernal Elapsed time : 10.714 ms
+Saving solution...
+Saved solution...
+Cleaning up...
+Done...
