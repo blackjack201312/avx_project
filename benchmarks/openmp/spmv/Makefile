@@ -1,5 +1,5 @@
 # C Compiler
-CC = icc
+CC = icpc
 CC_FLAGS = -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -liomp5 -lrt -lpthread -qopenmp
 CC_LINK = -I../../common/include
 APP=$(shell basename $(CURDIR))
@@ -18,11 +18,14 @@ mmio.o: mmio.c mmio.h
 	$(CC) -c mmio.c -o mmio.o
 	
 convert_dataset.o: convert_dataset.c
-	$(CC) -c convert_dataset.c
+	$(CC) -c convert_dataset.c -o convert_dataset.o
 
 
 clean:
 	rm -rf *.o $(APP)
 
-test: test.dat test.bin
-	./$(APP) -i test.dat,test.bin
+test: Dubcova3.mtx vector.bin
+	./$(APP) -i Dubcova3.mtx, vector.bin
+
+#test: test.dat test.bin
+#	./$(APP) -i test.dat,test.bin

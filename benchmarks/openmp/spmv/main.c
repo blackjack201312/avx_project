@@ -92,7 +92,7 @@ int main(int argc, char** argv) {
 	//    &h_data, &h_indices, &h_ptr,
 	//    &h_perm, &h_nzcnt);
 
- 
+//printf("Ready to transform matrix!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
 
 	int col_count;
 	coo_to_jds(
@@ -107,14 +107,19 @@ int main(int argc, char** argv) {
 		&col_count, &dim, &len, &nzcnt_len, &depth
 	);		
 
+    printf("Transform completed");
+
   h_Ax_vector=(float*)malloc(sizeof(float)*dim);
+  printf("Matrix allocation successful!");
   h_x_vector=(float*)malloc(sizeof(float)*dim);
+  printf("Vector allocation successful!");
 //  generate_vector(h_x_vector, dim);
   input_vec( parameters->inpFiles[1],h_x_vector,dim);
 
 	
 	pb_SwitchToTimer(&timers, pb_TimerID_COMPUTE);
 
+//printf("Ready for execution\n");
 	
   int p, i;
 	//main execution

@@ -30,6 +30,7 @@
 #include <string.h>
 #include <sys/time.h>
 #include <malloc.h>
+#include <omp.h>
 
 #include <parboil.h>
 
@@ -98,7 +99,7 @@ main (int argc, char *argv[]) {
 
   kVals = (struct kValues*)calloc(numK, sizeof (struct kValues));
   int k;
-  #pragma omp parallel for
+  #pragma omp parallel for simd
   for (k = 0; k < numK; k++) {
     kVals[k].Kx = kx[k];
     kVals[k].Ky = ky[k];
