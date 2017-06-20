@@ -6,8 +6,8 @@
  *cr
  ***************************************************************************/
 
-/* 
- * C code for creating the Q data structure for fast convolution-based 
+/*
+ * C code for creating the Q data structure for fast convolution-based
  * Hessian multiplication for arbitrary k-space trajectories.
  *
  * Inputs:
@@ -17,7 +17,7 @@
  * x  - VECTOR of x values, same length as y and z
  * y  - VECTOR of y values, same length as x and z
  * z  - VECTOR of z values, same length as x and y
- * phi - VECTOR of the Fourier transform of the spatial basis 
+ * phi - VECTOR of the Fourier transform of the spatial basis
  *      function, evaluated at [kx, ky, kz].  Same length as kx, ky, and kz.
  *
  * recommended g++ options:
@@ -46,7 +46,7 @@ main (int argc, char *argv[]) {
   float *phiR, *phiI;		/* Phi values (complex) */
   float *phiMag;		/* Magnitude of Phi */
   float *Qr, *Qi;		/* Q signal (complex) */
-  struct kValues* kVals;
+  //struct kValues* kVals;
 
   struct pb_Parameters *params;
   struct pb_TimerSet timers;
@@ -60,7 +60,7 @@ main (int argc, char *argv[]) {
       fprintf(stderr, "Expecting one input filename\n");
       exit(-1);
     }
-  
+
   /* Read in data */
   pb_SwitchToTimer(&timers, pb_TimerID_IO);
   inputData(params->inpFiles[0],
@@ -97,16 +97,21 @@ main (int argc, char *argv[]) {
 
   ComputePhiMagCPU(numK, phiR, phiI, phiMag);
 
-  kVals = (struct kValues*)calloc(numK, sizeof (struct kValues));
-  int k;
-  #pragma omp parallel for simd
-  for (k = 0; k < numK; k++) {
-    kVals[k].Kx = kx[k];
-    kVals[k].Ky = ky[k];
-    kVals[k].Kz = kz[k];
-    kVals[k].PhiMag = phiMag[k];
-  }
-  ComputeQCPU(numK, numX, kVals, x, y, z, Qr, Qi);
+  //kVals = (struct kValues*)calloc(numK, sizeof (struct kValues));
+//Kx = (float*)memalign(16, numK * sizeof(float));
+//ky = (float*)memalign(16, numK * sizeof(float));
+//Kz = (float*)memalign(16, numK * sizeof(float));
+//phimag = (float*)memalign(16, numK * sizeof(float));
+//
+//  int k;
+//  #pragma omp parallel for simd
+//  for (k = 0; k < numK; k++) {
+//    Kx = kx[k];
+//    Ky = ky[k];
+//    Kz = kz[k];
+//    PhiMag = phiMag[k];
+//  }
+  ComputeQCPU(numK, numX, kx, ky, kz, phiMag, x, y, z, Qr, Qi);
 
   if (params->outFile)
     {
@@ -125,7 +130,7 @@ main (int argc, char *argv[]) {
   free (phiR);
   free (phiI);
   free (phiMag);
-  free (kVals);
+//  free (kVals);
   free (Qr);
   free (Qi);
 

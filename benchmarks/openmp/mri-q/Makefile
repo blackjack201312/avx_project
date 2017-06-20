@@ -1,6 +1,6 @@
 # C Compiler
 CC = icc
-CC_FLAGS = -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -liomp5 -lrt -lpthread -qopenmp
+CC_FLAGS = -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -liomp5 -lrt -lpthread -qopenmp -Ofast
 CC_LINK = -I../../common/include
 APP=$(shell basename $(CURDIR))
 OBJS = main.o file.o computeQ.cc
