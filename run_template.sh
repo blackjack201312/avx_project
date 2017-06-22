@@ -37,7 +37,7 @@ source $dataconfig
 echo "start running application..."
 echo $in_file
 echo $out_file
-./$tool $in_file $out_file > $LOG_PATH/benchmark_${tool}_${platform}_${dev}_${workload}_perf.log
+SECS=${RUN_SECS} ./$tool $in_file $out_file > $LOG_PATH/benchmark_${tool}_${platform}_${dev}_${workload}_perf.log
 echo end running application...
 echo sleep $SLEEP_SECS seconds...
 sleep $SLEEP_SECS

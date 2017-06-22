@@ -1,4 +1,4 @@
-icpc -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -liomp5 -lrt -lpthread -qopenmp -I../../common/include -c io.cc
-icpc -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -liomp5 -lrt -lpthread -qopenmp -I../../common/include -c sgemm_kernel.cc
-icpc -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -liomp5 -lrt -lpthread -qopenmp -I../../common/include -c main.cc
-icpc -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -liomp5 -lrt -lpthread -qopenmp -I../../common/include io.o sgemm_kernel.o main.o  ../../common/src/parboil.c -o sgemm
+icpc -O3 -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -liomp5 -lrt -lpthread -qopenmp -I../../common/include -c io.cc
+icpc -O3 -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -liomp5 -lrt -lpthread -qopenmp -I../../common/include -c sgemm_kernel.cc
+icpc -O3 -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -liomp5 -lrt -lpthread -qopenmp -I../../common/include -c main.cc
+icpc -O3 -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -liomp5 -lrt -lpthread -qopenmp -I../../common/include io.o sgemm_kernel.o main.o  ../../common/src/parboil.c -o sgemm

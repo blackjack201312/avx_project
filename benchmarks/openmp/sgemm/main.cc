@@ -65,15 +65,49 @@ main (int argc, char *argv[]) {
   // allocate space for C
   std::vector<float> matC(matArow*matBcol);
 
-  double start = gettime();
-  for (int i = 0;i<20;i++){
+  const char* env_itrs = getenv("ITERS");
+  int nIter = (env_itrs != NULL) ? atoi(env_itrs) : 1;
+  const char* env_secs = getenv("SECS");
+  int secs = (env_secs != NULL) ? atoi(env_secs) : -1;
+  int timeRestrict = (env_secs != NULL) ? 1 : 0;
+
+  double start_t;
+  double end_t;
+  double total_s = 0;
+  int c = 0;
+
+
+  for (int i = -20;i<nIter;i++){
+
+	start_t = gettime();
+
   // Use standard sgemm interface
   basicSgemm('T', 'N', matArow, matBcol, matAcol, 1.0f,
       &matAT.front(), matArow, &matB.front(), matBcol, 0.0f, &matC.front(),
       matArow);
+
+  	end_t = gettime();
+
+	if (i == -1)
+	{
+		if(secs != -1)
+		{
+			double tPerIter = total_s / c;
+			printf("Estimate %lf s.\n", tPerIter);
+			nIter = int((double)secs / tPerIter) + 1;
+			printf("Adjust %d iterations to meet %d seconds.\n", nIter, secs);
+		}
+		total_s = 0;
+	}
+	else
+		total_s += end_t - start_t;
+	c++;
+
   }
-  double end = gettime();
-  printf("The total time is %lf seconds.\n", end - start);
+
+  double averMsecs = total_s / nIter * 1000;
+  printf("iterated %d times, average time is %lf ms.\n", nIter, averMsecs);
+
 
 
   if (argv[4]) {
