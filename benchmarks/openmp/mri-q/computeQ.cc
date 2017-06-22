@@ -23,7 +23,7 @@ void
 ComputePhiMagCPU(int numK, 
 		float* phiR, float* phiI, float* phiMag) {
 	int indexK = 0;
-#pragma omp parallel for simd
+#pragma omp parallel for //simd
 	for (indexK = 0; indexK < numK; indexK++) {
 		float real = phiR[indexK];
 		float imag = phiI[indexK];
