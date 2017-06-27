@@ -25,7 +25,7 @@ clean:
 	rm -rf *.o $(APP)
 
 test: Dubcova3.mtx vector.bin
-	./$(APP) -i Dubcova3.mtx, vector.bin
+	./$(APP) -i Dubcova3.mtx,vector.bin
 
 #test: test.dat test.bin
 #	./$(APP) -i test.dat,test.bin

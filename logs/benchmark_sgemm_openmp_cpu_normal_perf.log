@@ -1,10 +1,10 @@
 Sampling from the first 10 itrs.
-Estimated time: 0.000000 s.
-Estimated itr: 182839918.
+Estimated time: 0.023247 s.
+Estimated itr: 430.
 Sampling from the middle 10 itrs.
-Estimated time: 0.000000 s.
-Estimated itr: -2147483648.
+Estimated time: 0.010793 s.
+Estimated itr: 926.
 Sampling from the last 10 itrs.
-Estimated time: 0.010645 s.
+Estimated time: 0.010649 s.
 Adjust 940 iterations to meet 10 seconds.
-iterated 940 times, average time is 10.570835 ms.
+iterated 940 times, average time is 10.591583 ms.

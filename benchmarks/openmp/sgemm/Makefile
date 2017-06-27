@@ -15,7 +15,7 @@ main.o: main.cc ../../common/include/parboil.h
 io.o: io.cc
 	$(CC) $(CC_FLAGS) $(CC_LINK) -c io.cc
 
-sgemm_kernel.o: sgemm_kernel.cc
+sgemm_kernel.o: sgemm_kernel_simd.cc
 	$(CC) $(CC_FLAGS) $(CC_LINK) -c sgemm_kernel.cc
 
 clean:

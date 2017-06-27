@@ -14,6 +14,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <malloc.h>
 #include <math.h>
 #include "mmio.h"
 #include "convert_dataset.h"
@@ -117,9 +118,9 @@ int coo_to_jds(char* mtx_filename, int pad_rows, int warp_size, int pack_size, i
 
         if (mirrored) {
                 // max possible size, might be less because diagonal values aren't doubled
-                entries = (mat_entry*) malloc(2 * nz * sizeof(mat_entry));
+                entries = (mat_entry*) memalign(16, 2 * nz * sizeof(mat_entry));
         } else {
-                entries = (mat_entry*) malloc(nz * sizeof(mat_entry));
+                entries = (mat_entry*) memalign(16, nz * sizeof(mat_entry));
         }
 
         /* NOTE: when reading in doubles, ANSI C requires the use of the "l"  */
@@ -207,7 +208,7 @@ int coo_to_jds(char* mtx_filename, int pad_rows, int warp_size, int pack_size, i
 
 
         *nz_count_len = rows/warp_size + rows%warp_size;
-        *nz_count = (int*) malloc(*nz_count_len * sizeof(int)); // only one value per group
+        *nz_count = (int*) memalign(16, *nz_count_len * sizeof(int)); // only one value per group
 
         /* sort based upon row size, greatest first */
         qsort(stats, rows, sizeof(row_stats), sort_stats);
@@ -327,9 +328,9 @@ endwrite:
         printf("nz_count_len = %d\n", *nz_count_len);
 
         *data_cols = rows;
-        //printf("1 step to finish!\n");
+        printf("1 step to finish!\n");
         *data_ptr_len = irow+1;
-        //printf("0 step to finish!\n");
+        printf("0 step to finish!\n");
         return 0;
 }
-A
+

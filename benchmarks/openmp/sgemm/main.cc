@@ -76,7 +76,10 @@ main (int argc, char *argv[]) {
         double total_s0, total_s1, total_s2 = 0.0;
         //double total_s0, total_s1, total_s2;
         //total_s0 = total_s1 = total_s2 = 0;
-        int c0, c1, c2 = 0;
+        int c0, c1, c2;
+        c0 = 0;
+        c1 = 0;
+        c2 = 0;
 
         if(secs == -1){
                 fprintf(stderr, "You must set a time larger than 0 seconds!\n");
