@@ -208,7 +208,7 @@ int main(int argc, char **argv) {
         buf[i] = atof(strtok(NULL, " ,\t\n"));
         else
         buf[i] = 0;
-        printf("buf[i]:%f, i:%d\n", buf[i], i);
+        //printf("buf[i]:%f, i:%d\n", buf[i], i);
         i++;
       }
     }
@@ -257,7 +257,7 @@ int main(int argc, char **argv) {
       &cluster_centres,
       num_omp_threads
     );
-    break;
+    // break;
     end_t = omp_get_wtime();
     if(i < -40000)
     {

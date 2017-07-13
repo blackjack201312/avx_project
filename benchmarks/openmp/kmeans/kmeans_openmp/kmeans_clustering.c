@@ -77,7 +77,7 @@
 extern double wtime(void);
 extern int num_omp_threads;
 
-//inline
+inline
 int find_nearest_point(float  *pt,          /* [nfeatures] */
 	int     nfeatures,
 	float **pts,         /* [npts][nfeatures] */
@@ -100,7 +100,7 @@ int find_nearest_point(float  *pt,          /* [nfeatures] */
 
 	/*----< euclid_dist_2() >----------------------------------------------------*/
 	/* multi-dimensional spatial Euclid distance square */
-	//inline
+	inline
 	float euclid_dist_2(float *pt1,
 		float *pt2,
 		int    numdims)
@@ -108,8 +108,7 @@ int find_nearest_point(float  *pt,          /* [nfeatures] */
 			int i;
 			float ans=0.0;
 
-			float sans;
-			float *test1, *test2, *test3, *test4;
+			float *test;
 
 			__m256 ymm0, ymm1, ymm2;
 			//#pragma omp simd reduction (+:ans)
@@ -119,35 +118,54 @@ int find_nearest_point(float  *pt,          /* [nfeatures] */
 				ymm2 = _mm256_load_ps(&pt2[i]);
 				ymm1 = _mm256_sub_ps(ymm1, ymm2);
 				ymm0 = _mm256_mul_ps(ymm1, ymm1);
-				test1 = (float*)&ymm0;
-				test2 = (float*)&ymm1;
-				 for(int a = 0; a < 8; a++)
-				 printf("itr:%d\ntest1: %f, test2: %f\n", i+a, test1[a], ((pt1[a+i]-pt2[a+i])*(pt1[a+i]-pt2[a+i])));
+				// test1 = (float*)&ymm0;
+				// test2 = (float*)&ymm1;
+				// printf("Raw:\t%f %f %f %f %f %f %f %f\n",test1[0],test1[1],test1[2],test1[3],test1[4],test1[5],test1[6],test1[7]);
+
+				//  for(int a = 0; a < 8; a++)
+				//  printf("itr:%d\ntest1: %f, test2: %f\n", i+a, test1[a], ((pt1[a+i]-pt2[a+i])*(pt1[a+i]-pt2[a+i])));
 				// test = (float*)&ymm0;
 				// printf("sans: %f, ymm0[0]: %f\n", sans, test[0]);
+
     		/*reduction*/
 				ymm1 = _mm256_hadd_ps(ymm0, ymm0);
 				ymm2 = _mm256_hadd_ps(ymm1, ymm1);
-				test3 = (float*)&ymm2;
-				test4 = (float*)&ymm1;
-				for(int a = 0; a < 8; a++)
-				printf("itr:%d\ntest3: %f, test4: %f\n", i+a, ((pt1[a+i]-pt2[a+i])*(pt1[a+i]-pt2[a+i])), test3[a]);
-				ymm1 = _mm256_permute2f128_ps(ymm2, ymm2, 0x01);
-				test1 = (float*)&ymm2;
-				test2 = (float*)&ymm1;
-				for(int a = 0; a < 8; a++)
-				// printf("itr:%d\ntest1: %f, test2: %f\n", a+i, test1[a], test2[a]);
-				ymm0 = _mm256_add_ps(ymm1, ymm2);
-				test2 = (float*)&ymm0;
-				for(int n = 0; n < 8; n++)
-				ans += (pt1[n+i]-pt2[n+i]) * (pt1[n+i]-pt2[n+i]);
 
+				// test3 = (float*)&ymm2;
+				// test4 = (float*)&ymm1;
+				// printf("First:\t%f %f %f %f %f %f %f %f\n",test4[0],test4[1],test4[2],test4[3],test4[4],test4[5],test4[6],test4[7]);
+				// printf("Second:\t%f %f %f %f %f %f %f %f\n",test3[0],test3[1],test3[2],test3[3],test3[4],test3[5],test3[6],test3[7]);
+				// printf("Single:\t");
+				// for(int a = 0; a < 8; a++)
+				// printf("%f ",((pt1[a+i]-pt2[a+i])*(pt1[a+i]-pt2[a+i])));
+				// printf("\n");
+				//printf("\n");
+				//printf("itr:%d\ntest3: %f, test4: %f\n", i+a, ((pt1[a+i]-pt2[a+i])*(pt1[a+i]-pt2[a+i])), test3[a]);
+
+				test = (float*)&ymm2;
+
+				// printf("Raw:\t%f %f %f %f %f %f %f %f\n",test1[0],test1[1],test1[2],test1[3],test1[4],test1[5],test1[6],test1[7]);
+				// printf("After:\t%f %f %f %f %f %f %f %f\n",test2[0],test2[1],test2[2],test2[3],test2[4],test2[5],test2[6],test2[7]);
+				// printf("Single:\t");
+				// for(int a = 0; a < 8; a++)
+				// printf("%f ",((pt1[a+i]-pt2[a+i])*(pt1[a+i]-pt2[a+i])));
+				//printf("\n");
+				//printf("\n");
+				// for(int a = 0; a < 8; a++)
+				// printf("itr:%d\ntest1: %f, test2: %f\n", a+i, test1[a], test2[a]);
+				//ymm0 = _mm256_add_ps(ymm1, ymm2);
+				// test2 = (float*)&ymm0;
+				ans += test[0]+test[4];
+				 //for(int n = 0; n < 8; n++)
+				 //ans += (pt1[n+i]-pt2[n+i]) * (pt1[n+i]-pt2[n+i]);
+			//printf("sans: %f, ans: %f\n", sans, ans);
 
 			}
-			printf("Number in vec:%f, ans:%f\n", test2[0], ans);
+			// printf("Number in vec:%f, ans:%f\n", test2[0], ans);
 			//test = (float*)&ymm0;
-			//if(test[0] != ans)
-			//printf("test[0]: %f, ans: %f\n", test[0], ans);
+			//printf("test1[0]:%f, test2[0]:%f\n", test1[0], test2[0]);
+			//if(sans != ans)
+			//printf("sans: %f, ans: %f\n", sans, ans);
 
 			return(ans);
 		}
@@ -258,7 +276,7 @@ int find_nearest_point(float  *pt,          /* [nfeatures] */
 								nfeatures,
 								clusters,
 								nclusters);
-								return clusters;
+								//return clusters;
 								/* if membership changes, increase delta by 1 */
 								if (membership[i] != index) delta += 1.0;
 
