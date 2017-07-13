@@ -20,8 +20,8 @@ CXX             := icpc
 
 # ------------  compiler flags  ------------------------------------------------
 DEBUG_CFLAGS    := -Wall -O0 -g
-RELEASE_CFLAGS  := -Wall -O3 
-COMMON_CFLAGS   := -g -qopenmp -O2 -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -liomp5 -lrt -lpthread
+RELEASE_CFLAGS  := -Wall #-O3
+COMMON_CFLAGS   := -g -qopenmp -fast -xHOST -unroll-aggressive -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -liomp5 -lrt -lpthread
 
 # ------------  compiler defs  ------------------------------------------------
 DEBUG_CDEFS    := 

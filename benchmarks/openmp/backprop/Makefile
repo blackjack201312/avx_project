@@ -1,6 +1,6 @@
 # C compiler
 CC = icc
-OMP_FLAGS = -gopenmp
+OMP_FLAGS = -qopenmp
 CC_FLAGS = -g $(OMP_FLAGS)  -O2
 
 

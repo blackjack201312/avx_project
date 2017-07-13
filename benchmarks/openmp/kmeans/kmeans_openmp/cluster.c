@@ -17,7 +17,7 @@
 /*                                                                           */
 /*2       Redistributions in binary form must reproduce the above copyright   */
 /*        notice, this list of conditions and the following disclaimer in the */
-/*        documentation and/or other materials provided with the distribution.*/ 
+/*        documentation and/or other materials provided with the distribution.*/
 /*                                                                            */
 /*3       Neither the name of Northwestern University nor the names of its    */
 /*        contributors may be used to endorse or promote products derived     */
@@ -77,37 +77,36 @@
 /*---< cluster() >-----------------------------------------------------------*/
 int cluster(int      numObjects,      /* number of input objects */
             int      numAttributes,   /* size of attribute of each object */
-            float  **attributes,      /* [numObjects][numAttributes] */            
+            float  **attributes,      /* [numObjects][numAttributes] */
             int      nclusters,
             float    threshold,       /* in:   */
             float ***cluster_centres, /* out: [best_nclusters][numAttributes] */
-   	    int num_omp_threads 
+   	    int num_omp_threads
             )
 {
     int    *membership;
     float **tmp_cluster_centres;
 
     membership = (int*) malloc(numObjects * sizeof(int));
-   
+
     srand(7);
 	/* perform regular Kmeans */
-    tmp_cluster_centres = kmeans_clustering(attributes,
-                                            numAttributes,
-                                            numObjects,
-                                            nclusters,
+    tmp_cluster_centres = kmeans_clustering(attributes,    //feature
+                                            numAttributes, //nfeatures
+                                            numObjects,    //npoints
+                                            nclusters,     //nclusters
                                             threshold,
                                             membership,
-					    num_omp_threads);      
-	
+					    num_omp_threads);
+
     if (*cluster_centres) {
 		free((*cluster_centres)[0]);
         free(*cluster_centres);
     }
     *cluster_centres = tmp_cluster_centres;
 
-   
+
 	free(membership);
 
     return 0;
 }
-

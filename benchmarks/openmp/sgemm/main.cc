@@ -1,12 +1,12 @@
 /***************************************************************************
- *cr
- *cr            (C) Copyright 2010 The Board of Trustees of the
- *cr                        University of Illinois
- *cr                         All Rights Reserved
- *cr
- ***************************************************************************/
+* cr
+* cr            (C) Copyright 2010 The Board of Trustees of the
+* cr                        University of Illinois
+* cr                         All Rights Reserved
+* cr
+***************************************************************************/
 
-/* 
+/*
  * Main entry of dense matrix-matrix multiplication kernel
  */
 
@@ -41,12 +41,12 @@ main (int argc, char *argv[]) {
         std::vector<float> matAT, matB;
 
 
-        /* Read command line. Expect 3 inputs: A, B and B^T 
+        /* Read command line. Expect 3 inputs: A, B and B^T
            in column-major layout*/
         // params = pb_ReadParameters(&argc, argv);
-        if ((argv[1] == NULL) 
-                        || (argv[2] == NULL)
-                        || (argv[3] == NULL))
+        if ((argv[1] == NULL)
+            || (argv[2] == NULL)
+            || (argv[3] == NULL))
         {
                 fprintf(stderr, "Expecting three input filenames\n");
                 exit(-1);
@@ -55,11 +55,11 @@ main (int argc, char *argv[]) {
 
         // load A^T
         readColMajorMatrixFile(argv[1],
-                        matAcol, matArow, matAT);
+                               matAcol, matArow, matAT);
 
         // load B
         readColMajorMatrixFile(argv[3],
-                        matBrow, matBcol, matB);
+                               matBrow, matBcol, matB);
 
 
         // allocate space for C
@@ -81,32 +81,23 @@ main (int argc, char *argv[]) {
         c1 = 0;
         c2 = 0;
 
-        if(secs == -1){
+        if(secs == -1) {
                 fprintf(stderr, "You must set a time larger than 0 seconds!\n");
                 return 1;
         }
 
-        for (int i = -30;i<nIter;i++){
+        for (int i = -30; i<nIter; i++) {
 
                 start_t = gettime();
 
                 // Use standard sgemm interface
                 basicSgemm('T', 'N', matArow, matBcol, matAcol, 1.0f,
-                                &matAT.front(), matArow, &matB.front(), matBcol, 0.0f, &matC.front(),
-                                matArow);
+                           &matAT.front(), matArow, &matB.front(), matBcol, 0.0f, &matC.front(),
+                           matArow);
 
                 end_t = gettime();
 
-                if (i == -1)
-                {
-                                double tPerIter = total_s2 / c2;
-                                printf("Sampling from the first 10 itrs.\nEstimated time: %lf s.\nEstimated itr: %d.\n", total_s0 / (double)c0, (int)((double)secs / (total_s0 / (double)c0)));
-                                printf("Sampling from the middle 10 itrs.\nEstimated time: %lf s.\nEstimated itr: %d.\n", total_s1 / (double)c1, (int)((double)secs / (total_s1 / (double)c1)));
-                                printf("Sampling from the last 10 itrs.\nEstimated time: %lf s.\n", tPerIter);
-                                nIter = int((double)secs / tPerIter) + 1;
-                                printf("Adjust %d iterations to meet %d seconds.\n", nIter, secs);
-                }
-                else if(i < -20)
+                if(i < -20)
                 {
                         c0++;
                         total_s0 += end_t - start_t;
@@ -120,6 +111,18 @@ main (int argc, char *argv[]) {
                 {
                         c2++;
                         total_s2 += end_t - start_t;
+
+                        if (i == -1)
+                        {
+                                double tPerIter = total_s2 / c2;
+                                printf("Sampling from the first 10 itrs.\nEstimated time: %lf s.\nEstimated itr: %d.\n", total_s0 / (double)c0, (int)((double)secs / (total_s0 / (double)c0)));
+                                printf("Sampling from the middle 10 itrs.\nEstimated time: %lf s.\nEstimated itr: %d.\n", total_s1 / (double)c1, (int)((double)secs / (total_s1 / (double)c1)));
+                                printf("Sampling from the last 10 itrs.\nEstimated time: %lf s.\n", tPerIter);
+                                nIter = (int)((double)secs / tPerIter) + 1;
+                                printf("Adjust %d iterations to meet %d seconds.\n", nIter, secs);
+                                c2 = 0;
+                                total_s2=0;
+                        }
                 }
         }
 
@@ -130,7 +133,7 @@ main (int argc, char *argv[]) {
 
         if (argv[4]) {
                 /* Write C to file */
-                writeColMajorMatrixFile(argv[4], matArow, matBcol, matC); 
+                writeColMajorMatrixFile(argv[4], matArow, matBcol, matC);
         }
 
         return 0;

@@ -1,6 +1,6 @@
 # C compiler
 CC = icc
-CC_FLAGS = -g -qopenmp -O2 -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -liomp5 -lrt -lpthread
+CC_FLAGS = -g -qopenmp -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -liomp5 -lrt -lpthread -xavx -pg #-O2
 
 kmeans: cluster.o getopt.o kmeans.o kmeans_clustering.o 
 	$(CC) $(CC_FLAGS) cluster.o getopt.o kmeans.o kmeans_clustering.o  -o kmeans

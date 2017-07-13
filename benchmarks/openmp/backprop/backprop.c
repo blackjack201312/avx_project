@@ -311,7 +311,7 @@ float *delta, *ly, **w, **oldw;
   //momentum = 0.3;
 
 #ifdef OPEN
-  #pragma omp parallel for  \
+  #pragma omp parallel for simd \
       shared(oldw, w, delta) \
 	  private(j, k, new_dw) \
 	  firstprivate(ndelta, nly) 
