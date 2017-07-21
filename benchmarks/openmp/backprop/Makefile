@@ -1,7 +1,7 @@
 # C compiler
 CC = icc
 OMP_FLAGS = -qopenmp
-CC_FLAGS = -g $(OMP_FLAGS)  -O2
+CC_FLAGS = -g -pg $(OMP_FLAGS) #-O2
 
 
 backprop: backprop.o facetrain.o imagenet.o backprop_kernel.o 

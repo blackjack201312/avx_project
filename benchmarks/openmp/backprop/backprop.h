@@ -23,6 +23,8 @@ typedef struct {
 
   float *target;               /* storage for target vector */
 
+  float **input_weights_t;
+  float **hidden_weights_t;
   float **input_weights;       /* weights from input to hidden layer */
   float **hidden_weights;      /* weights from hidden to output layer */
 
