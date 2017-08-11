@@ -1,6 +1,6 @@
 # C Compiler
 CC = icpc
-CC_FLAGS = -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -liomp5 -lrt -lpthread -qopenmp
+CC_FLAGS = -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -liomp5 -lrt -lpthread -qopenmp -pg
 CC_LINK = -I../../common/include
 APP=$(shell basename $(CURDIR))
 OBJS = main.o
