@@ -134,7 +134,7 @@ int main(int argc, char* argv[])
 		
 
 #ifdef OPEN
-		#pragma omp parallel for shared(J, dN, dS, dW, dE, c, rows, cols, iN, iS, jW, jE) private(i, j, k, Jc, G2, L, num, den, qsqr)
+		#pragma omp parallel for simd shared(J, dN, dS, dW, dE, c, rows, cols, iN, iS, jW, jE) private(i, j, k, Jc, G2, L, num, den, qsqr)
 #endif    
 		for (int i = 0 ; i < rows ; i++) {
             for (int j = 0; j < cols; j++) { 
@@ -169,7 +169,7 @@ int main(int argc, char* argv[])
   
     }
 #ifdef OPEN
-		#pragma omp parallel for shared(J, c, rows, cols, lambda) private(i, j, k, D, cS, cN, cW, cE)
+		#pragma omp parallel for simd shared(J, c, rows, cols, lambda) private(i, j, k, D, cS, cN, cW, cE)
 #endif 
 		for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {        
